@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Karla Sabor De El Pulgarcito — Comida salvadoreña hecha en casa</title>
 <meta name="description" content="Pupusas, platillos y antojitos salvadoreños hechos el mismo día en Los Ángeles. Pedí por WhatsApp, elegí pago, envío y propina.">
 
@@ -49,7 +49,19 @@
     --glow-mustard:0 0 30px rgba(215,155,59,.5), 0 0 60px rgba(215,155,59,.2);
     --glow-teal:0 0 30px rgba(46,196,182,.5), 0 0 60px rgba(46,196,182,.2);
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  
+  /* Prevenir zoom por doble-tap en botones interactivos */
+  button, a, .btn, .option-card, .pupusa-option, .tip-chip, .radio-opt,
+  .filter-chip, .day-chip, .lang-btn, .share-btn, .cart-btn, .see-more,
+  .modal-close, .back-to-top, .bubble {
+    touch-action: manipulation;
+  }
+  
+  /* Prevenir zoom en inputs también */
+  input, textarea, select {
+    touch-action: manipulation;
+  }
   html{scroll-behavior:smooth;}
   body{
     margin:0;
