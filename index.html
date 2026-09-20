@@ -739,7 +739,92 @@
     .cart-badge{font-size:10px; min-width:16px; height:16px;}
     .trust-row{gap:6px; margin-top:24px;}
     .pill{font-size:11px; padding:5px 10px;}
-    .pill svg{width:11px; height:11px;}
+    .pill svg{width:11px; height:11px;}    
+    /* ===================== MODAL MÓVIL COMPACTO ===================== */
+    .modal{
+      max-width:100%;
+      max-height:92vh;
+      border-radius:6px 24px 6px 24px;
+      padding:0 0 20px;
+    }
+    .modal-img{height:140px;}
+    .modal-body{padding:18px 20px 0;}
+    .modal h3{font-size:20px; margin-bottom:6px;}
+    .modal .dish-desc{font-size:13.5px; margin-bottom:14px; line-height:1.4;}
+    .cat-badge{font-size:10.5px; margin-bottom:8px;}
+    
+    /* Botones Single/Combo en 2 columnas compactas */
+    .option-toggle{
+      flex-direction:row;
+      gap:8px;
+      margin-bottom:14px;
+    }
+    .option-card{
+      padding:10px 12px;
+      border-radius:4px 12px 4px 12px;
+    }
+    .option-card .opt-title{font-size:12.5px;}
+    .option-card .opt-price{font-size:15px; margin-top:2px;}
+    .option-card .opt-desc{font-size:11px; margin-top:2px; line-height:1.25;}
+    
+    /* Meta info compacta */
+    .modal-meta{
+      gap:14px;
+      margin-bottom:14px;
+      font-size:12px;
+    }
+    .modal-meta strong{font-size:14px;}
+    
+    /* Includes más compacto */
+    .includes-title{font-size:11.5px; margin-bottom:6px;}
+    .includes-list{gap:5px; margin-bottom:14px;}
+    .includes-list li{font-size:13px; gap:7px;}
+    .includes-list svg{width:12px; height:12px; margin-top:2px;}
+    
+    /* Selector de pupusas más chico */
+    .pupusa-selector{gap:6px; margin-bottom:12px;}
+    .pupusa-option{padding:8px 10px;}
+    .pupusa-opt-name{font-size:12.5px;}
+    .pupusa-opt-desc{font-size:11px; margin-top:2px;}
+    .pupusa-opt-price{font-size:13.5px; margin-top:3px;}
+    
+    /* Cantidad compacta */
+    .modal .includes-title + div[style*="display:flex"]{
+      gap:8px !important;
+      margin-bottom:14px !important;
+    }
+    .modal .btn-ghost.btn-small{
+      padding:6px 12px !important;
+      font-size:13px;
+    }
+    #modal-qty{
+      font-size:18px !important;
+      min-width:32px !important;
+    }
+    
+    /* Botones de acción más chicos */
+    .modal-actions{
+      gap:8px;
+      flex-direction:row;
+    }
+    .modal-actions .btn{
+      padding:11px 14px;
+      font-size:13.5px;
+      flex:1;
+      justify-content:center;
+    }
+    .modal-actions .btn-ghost{
+      flex:0.7;
+    }
+    
+    /* Botón cerrar más chico y mejor ubicado */
+    .modal-close{
+      width:30px;
+      height:30px;
+      font-size:17px;
+      top:10px;
+      right:10px;
+    }
   }
   @media(max-width:380px){
     .dish-img, .dish-card.featured-lg .dish-img, .dish-card.featured-tall .dish-img{height:100px;}
@@ -753,6 +838,20 @@
     .lang-btn{font-size:9.5px;}
     .cart-btn{padding:5px 8px; font-size:10.5px;}
     .cart-btn svg{width:12px; height:12px;}
+    /* ===================== MODAL MÓVIL MUY CHICO ===================== */
+    .modal-img{height:120px;}
+    .modal-body{padding:14px 16px 0;}
+    .modal h3{font-size:18px;}
+    .modal .dish-desc{font-size:12.5px;}
+    .option-card{padding:8px 10px;}
+    .option-card .opt-title{font-size:11.5px;}
+    .option-card .opt-price{font-size:14px;}
+    .option-card .opt-desc{font-size:10px;}
+    .modal-actions .btn{padding:10px 10px; font-size:12.5px;}
+    .includes-list li{font-size:12px;}
+    .pupusa-opt-name{font-size:11.5px;}
+    .pupusa-opt-price{font-size:13px;}
+    #modal-qty{font-size:16px !important;}
   }
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important; transition-duration:0.01ms !important;}
