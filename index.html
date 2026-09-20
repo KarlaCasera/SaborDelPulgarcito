@@ -6,7 +6,7 @@
 <title>Karla Sabor De El Pulgarcito — Comida salvadoreña hecha en casa</title>
 <meta name="description" content="Pupusas, platillos y antojitos salvadoreños hechos el mismo día en Los Ángeles. Pedí por WhatsApp, elegí pago, envío y propina.">
 
-<!-- ===================== OPEN GRAPH (para compartir en WhatsApp, Facebook, Twitter) ===================== -->
+<!-- ===================== OPEN GRAPH ===================== -->
 <meta property="og:title" content="Karla Sabor De El Pulgarcito — Comida salvadoreña hecha en casa">
 <meta property="og:description" content="Pupusas, platillos y antojitos salvadoreños hechos el mismo día. Pedí por WhatsApp y coordinamos todo.">
 <meta property="og:type" content="website">
@@ -146,6 +146,28 @@
   .nav-links a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s, color .2s;}
   .nav-links a:hover{border-color:var(--brick); color:var(--ink);}
   .nav-right{display:flex; align-items:center; gap:16px;}
+
+  /* ===================== LANG SWITCH ===================== */
+  .lang-switch{
+    display:flex; align-items:center; gap:4px;
+    font-size:13px; font-weight:700; color:var(--ink-soft);
+    padding:6px 10px;
+    border:1.5px solid var(--line);
+    border-radius:4px 12px 4px 12px;
+    background:transparent;
+    transition:border-color .2s;
+  }
+  .lang-switch:hover{border-color:var(--mustard);}
+  .lang-btn{
+    background:none; border:none; cursor:pointer;
+    font-family:'Karla',sans-serif; font-weight:700; font-size:13px;
+    color:var(--ink-soft); padding:2px 4px;
+    transition:color .2s, transform .2s;
+  }
+  .lang-btn:hover{color:var(--brick); transform:scale(1.1);}
+  .lang-btn.active{color:var(--brick); text-decoration:underline; text-underline-offset:3px;}
+  .lang-sep{color:var(--line); font-weight:400;}
+
   .cart-btn{position:relative; background:none; border:1.5px solid var(--line); border-radius:4px 12px 4px 12px; padding:9px 14px; font-family:'Karla',sans-serif; font-weight:600; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:7px; color:var(--ink); transition:all .2s;}
   .cart-btn:hover{border-color:var(--ink); transform:translateY(-1px); box-shadow:0 4px 14px rgba(140,90,60,.18);}
   .cart-badge{background:var(--brick); color:var(--card); font-size:11.5px; font-weight:700; min-width:18px; height:18px; border-radius:9px; display:flex; align-items:center; justify-content:center; padding:0 4px;}
@@ -191,6 +213,34 @@
   .section-head h2{font-size:38px;}
   .section-head h2 em{font-style:italic; color:var(--brick-dark);}
   .section-head p{margin-top:14px; color:var(--ink-soft); font-size:16.5px;}
+
+  /* ===================== DAY SELECTOR ===================== */
+  .day-selector{
+    display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;
+    position:relative; z-index:1;
+    padding:6px;
+    background:rgba(248,242,230,.6);
+    border-radius:12px;
+    border:1px solid var(--line);
+    width:fit-content;
+  }
+  .day-chip{
+    font-size:13px; font-weight:700; padding:8px 14px; border-radius:20px;
+    border:1.5px solid transparent; background:transparent; cursor:pointer;
+    color:var(--ink-soft); transition:all .25s cubic-bezier(.2,.8,.3,1);
+    position:relative;
+  }
+  .day-chip:hover{border-color:var(--mustard); color:var(--ink); transform:translateY(-1px);}
+  .day-chip.active{
+    background:var(--brick); color:var(--card); border-color:var(--brick);
+    box-shadow:0 4px 14px rgba(177,75,42,.3);
+  }
+  .day-chip.today::after{
+    content:'HOY'; position:absolute; top:-8px; right:-4px;
+    font-size:8.5px; font-weight:800; letter-spacing:0.04em;
+    background:var(--mustard); color:var(--ink);
+    padding:2px 5px; border-radius:6px;
+  }
 
   /* ===================== MENU FILTERS ===================== */
   .menu-filters{display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap; position:relative; z-index:1;}
@@ -264,7 +314,23 @@
     box-shadow:0 0 20px rgba(255,107,53,.5);
   }
 
-   /* ===================== VALUE GRID ===================== */
+  /* ===================== SHARE BUTTON ===================== */
+  .dish-img-wrap{position:relative; overflow:hidden;}
+  .share-btn{
+    position:absolute; top:10px; right:10px; z-index:5;
+    width:34px; height:34px; border-radius:50%; border:none;
+    background:rgba(248,242,230,0.92); color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    transition:transform .25s cubic-bezier(.2,.8,.3,1), background .25s, color .25s, box-shadow .25s;
+    backdrop-filter:blur(4px);
+  }
+  .share-btn svg{width:16px; height:16px;}
+  .share-btn:hover{background:var(--brick); color:var(--card); transform:scale(1.12) rotate(-8deg); box-shadow:0 4px 14px rgba(177,75,42,.45);}
+  .share-btn:active{transform:scale(0.95);}
+
+  /* ===================== VALUE GRID ===================== */
   .value-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:36px 48px; position:relative; z-index:1;}
   .value-item{display:flex; gap:16px; padding:16px; border-radius:6px 20px 6px 20px; transition:all .3s;}
   .value-item:hover{background:rgba(248,242,230,.6); transform:translateY(-2px);}
@@ -275,19 +341,9 @@
   .value-item p{font-size:14.5px; color:var(--ink-soft);}
 
   /* ===================== PROMO SECTION ===================== */
-  .promo-section{
-    padding:60px 0;
-    position:relative;
-  }
+  .promo-section{padding:60px 0; position:relative;}
+  .promo-image{width:100%; max-width:1100px; margin:0 auto; display:block; border-radius:12px; box-shadow:0 20px 50px -20px rgba(140,90,60,.4);}
 
-  .promo-image{
-    width:100%;
-    max-width:1100px;
-    margin:0 auto;
-    display:block;
-    border-radius:12px;
-    box-shadow:0 20px 50px -20px rgba(140,90,60,.4);
-  }
   /* ===================== TESTIMONIALS ===================== */
   .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; z-index:1;}
   .testi-card{
@@ -301,11 +357,7 @@
     background:linear-gradient(180deg, var(--brick), var(--mustard));
     opacity:.5; transition:opacity .3s, width .3s;
   }
-  .testi-card:hover{
-    transform:translateY(-6px) scale(1.015);
-    border-color:var(--mustard);
-    box-shadow:0 18px 40px -12px rgba(140,90,60,.4), 0 0 24px rgba(215,155,59,.15);
-  }
+  .testi-card:hover{transform:translateY(-6px) scale(1.015); border-color:var(--mustard); box-shadow:0 18px 40px -12px rgba(140,90,60,.4), 0 0 24px rgba(215,155,59,.15);}
   .testi-card:hover::before{opacity:1; width:5px;}
   .testi-quote{font-family:'Fraunces',serif; font-style:italic; font-size:17px; line-height:1.5;}
   .testi-name{margin-top:16px; font-family:'Caveat',cursive; font-size:20px; color:var(--brick-dark);}
@@ -403,46 +455,16 @@
   .modal-actions{display:flex; gap:12px;}
 
   /* ===================== PUPUSA SELECTOR ===================== */
-  .pupusa-selector {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 18px;
+  .pupusa-selector{display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:18px;}
+  .pupusa-option{
+    border:1.5px solid var(--line); border-radius:4px 14px 4px 14px; padding:12px 14px;
+    cursor:pointer; transition:all .25s cubic-bezier(.2,.8,.3,1); background:var(--card);
   }
-  .pupusa-option {
-    border: 1.5px solid var(--line);
-    border-radius: 4px 14px 4px 14px;
-    padding: 12px 14px;
-    cursor: pointer;
-    transition: all .25s cubic-bezier(.2,.8,.3,1);
-    background: var(--card);
-  }
-  .pupusa-option:hover {
-    border-color: var(--mustard);
-    transform: translateY(-2px);
-  }
-  .pupusa-option.active {
-    border-color: var(--brick);
-    background: rgba(177,75,42,0.06);
-    box-shadow: 0 0 20px rgba(177,75,42,.2);
-  }
-  .pupusa-opt-name {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--ink);
-  }
-  .pupusa-opt-desc {
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-top: 3px;
-  }
-  .pupusa-opt-price {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--brick-dark);
-    margin-top: 6px;
-  }
+  .pupusa-option:hover{border-color:var(--mustard); transform:translateY(-2px);}
+  .pupusa-option.active{border-color:var(--brick); background:rgba(177,75,42,0.06); box-shadow:0 0 20px rgba(177,75,42,.2);}
+  .pupusa-opt-name{font-weight:700; font-size:14px; color:var(--ink);}
+  .pupusa-opt-desc{font-size:12px; color:var(--ink-soft); margin-top:3px;}
+  .pupusa-opt-price{font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:var(--brick-dark); margin-top:6px;}
 
   /* ===================== CART DRAWER ===================== */
   .cart-drawer{
@@ -472,8 +494,7 @@
   .chip-row{display:flex; gap:8px; flex-wrap:wrap;}
   .tip-chip{
     border:1.5px solid var(--line); border-radius:20px; padding:8px 14px; font-size:13px; font-weight:700;
-    cursor:pointer; color:var(--ink-soft); background:transparent;
-    transition:all .2s;
+    cursor:pointer; color:var(--ink-soft); background:transparent; transition:all .2s;
   }
   .tip-chip:hover{border-color:var(--mustard); color:var(--ink);}
   .tip-chip.active{border-color:var(--brick); background:rgba(177,75,42,0.08); color:var(--brick-dark);}
@@ -490,6 +511,93 @@
     box-shadow:0 10px 30px rgba(43,32,24,.4);
   }
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  
+  /* ===================== WHATSAPP FLOAT ===================== */
+  .whatsapp-float{
+    position:fixed; bottom:24px; right:24px; z-index:50;
+    width:56px; height:56px; border-radius:50%;
+    background:#25D366; color:white;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(37,211,102,.5);
+    transition:transform .25s, box-shadow .25s;
+    text-decoration:none;
+  }
+  .whatsapp-float:hover{transform:scale(1.1) rotate(6deg); box-shadow:0 6px 28px rgba(37,211,102,.7);}
+
+  /* ===================== BACK TO TOP ===================== */
+  .back-to-top{
+    position:fixed; bottom:96px; right:24px; z-index:49;
+    width:46px; height:46px; border-radius:50%;
+    border:1.5px solid var(--line); background:var(--card); color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    box-shadow:0 4px 16px rgba(140,90,60,.2);
+    opacity:0; visibility:hidden; transform:translateY(20px);
+    transition:opacity .3s, visibility .3s, transform .3s cubic-bezier(.2,.8,.3,1), background .2s, color .2s, box-shadow .2s;
+  }
+  .back-to-top svg{width:20px; height:20px;}
+  .back-to-top.show{opacity:1; visibility:visible; transform:translateY(0);}
+  .back-to-top:hover{background:var(--brick); color:var(--card); border-color:var(--brick); transform:translateY(-4px) scale(1.05); box-shadow:0 8px 24px rgba(177,75,42,.45);}
+  .back-to-top:active{transform:translateY(-2px) scale(0.98);}
+
+  /* ===================== CARRITO ANIMACIONES ===================== */
+  @keyframes cartBounce{
+    0%{transform:scale(1) rotate(0deg);}
+    25%{transform:scale(1.25) rotate(-8deg);}
+    50%{transform:scale(1.15) rotate(6deg);}
+    75%{transform:scale(1.2) rotate(-4deg);}
+    100%{transform:scale(1) rotate(0deg);}
+  }
+  @keyframes badgePop{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.5); background:var(--mustard); color:var(--ink);}
+    100%{transform:scale(1);}
+  }
+  .cart-btn.bounce{animation:cartBounce .6s cubic-bezier(.2,.8,.3,1);}
+  .cart-badge.pop{animation:badgePop .5s cubic-bezier(.2,.8,.3,1);}
+
+  /* ===================== BURBUJAS INTERACTIVAS ===================== */
+  .menu-head-wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:40px; margin-bottom:44px; position:relative;
+  }
+  .menu-head-wrap .section-head{margin-bottom:0; flex:1; position:relative; z-index:2;}
+  .bubble-zone{flex-shrink:0; width:340px; height:220px; position:relative; pointer-events:none;}
+  .bubble{
+    position:absolute; cursor:pointer; pointer-events:auto;
+    user-select:none; -webkit-tap-highlight-color:transparent;
+    transition:transform .2s cubic-bezier(.2,.8,.3,1);
+    animation:floatBubble 6s ease-in-out infinite;
+    will-change:transform;
+  }
+  .bubble svg{
+    width:100%; height:100%; display:block;
+    filter:drop-shadow(0 4px 10px rgba(140,90,60,.25));
+    transition:transform .2s;
+  }
+  .bubble:hover svg{transform:scale(1.15);}
+  .bubble:active svg{transform:scale(0.9);}
+  @keyframes floatBubble{
+    0%,100%{transform:translate(0,0) rotate(0deg);}
+    25%{transform:translate(6px,-14px) rotate(4deg);}
+    50%{transform:translate(-4px,-20px) rotate(-3deg);}
+    75%{transform:translate(-8px,-8px) rotate(2deg);}
+  }
+  .bubble.burst{animation:burstAnim .35s forwards; pointer-events:none;}
+  @keyframes burstAnim{
+    0%{transform:scale(1); opacity:1;}
+    50%{transform:scale(1.4); opacity:0.8;}
+    100%{transform:scale(0); opacity:0;}
+  }
+  .particle{
+    position:absolute; width:10px; height:10px; border-radius:50%;
+    pointer-events:none; z-index:5;
+    animation:particleFly 0.9s cubic-bezier(.2,.8,.3,1) forwards;
+  }
+  @keyframes particleFly{
+    0%{transform:translate(0,0) scale(1); opacity:1;}
+    100%{transform:translate(var(--tx), var(--ty)) scale(0.3); opacity:0;}
+  }
 
   /* ===================== SCROLL REVEAL ===================== */
   .reveal{opacity:0; transform:translateY(40px); transition:opacity .8s cubic-bezier(.2,.8,.3,1), transform .8s cubic-bezier(.2,.8,.3,1);}
@@ -501,57 +609,31 @@
 
   /* ===================== HERO APROBADO POR ===================== */
   .hero-approved-wrap{
-    position:absolute;
-    top:-6px;
-    right:6px;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    background:var(--paper);
-    padding:5px 8px;
+    position:absolute; top:-6px; right:6px;
+    display:flex; align-items:center; gap:6px;
+    background:var(--paper); padding:5px 8px;
     border-radius:60px;
     box-shadow:0 3px 10px rgba(140,90,60,.15);
     border:1px solid var(--line);
-    z-index:3;
-    max-width:fit-content;
+    z-index:3; max-width:fit-content;
   }
   .hero-approved-wrap .stamp{
-    position:static;
-    background:transparent;
-    flex-shrink:0;
-    font-size:14px;
-    width:78px;
-    height:78px;
-    padding:8px 4px;
-    line-height:1.05;
+    position:static; background:transparent; flex-shrink:0;
+    font-size:14px; width:78px; height:78px; padding:8px 4px; line-height:1.05;
   }
-  .hero-approved-photos{
-    display:flex;
-    align-items:center;
-    flex-shrink:0;
-  }
+  .hero-approved-photos{display:flex; align-items:center; flex-shrink:0;}
   .hero-approved-photos img{
-    width:78px !important;
-    height:78px !important;
-    max-width:78px;
-    max-height:78px;
-    object-fit:cover;
-    border-radius:50%;
+    width:78px !important; height:78px !important;
+    max-width:78px; max-height:78px;
+    object-fit:cover; border-radius:50%;
     border:2px solid var(--paper);
     box-shadow:0 0 0 1.5px var(--brick), 0 3px 8px rgba(140,90,60,.25);
     background:#fff;
     transition:transform .3s cubic-bezier(.2,.8,.3,1), box-shadow .3s ease;
     display:block;
   }
-  .hero-approved-photos img:first-child{
-    transform:rotate(-5deg);
-    z-index:2;
-  }
-  .hero-approved-photos img:last-child{
-    margin-left:-22px;
-    transform:rotate(5deg);
-    z-index:1;
-  }
+  .hero-approved-photos img:first-child{transform:rotate(-5deg); z-index:2;}
+  .hero-approved-photos img:last-child{margin-left:-22px; transform:rotate(5deg); z-index:1;}
   .hero-approved-photos img:hover{
     transform:translateY(-3px) scale(1.06) rotate(0deg);
     box-shadow:0 0 0 2px var(--mustard), 0 6px 14px rgba(215,155,59,.45);
@@ -581,18 +663,66 @@
     .final-cta{padding:40px 28px;}
     .section-head h2{font-size:30px;}
     .float-fig{display:none;}
+    .menu-head-wrap{flex-direction:column; align-items:flex-start; gap:20px; margin-bottom:28px;}
+    .bubble-zone{width:100%; height:120px; order:2;}
   }
   @media(max-width:560px){
     .hero-approved-wrap{ padding:3px 5px; gap:3px; }
     .hero-approved-wrap .stamp{ font-size:9px; width:54px; height:54px; padding:5px 2px; }
     .hero-approved-photos img{ width:54px !important; height:54px !important; max-width:54px; max-height:54px; }
     .hero-approved-photos img:last-child{ margin-left:-15px; }
-    .hero-copy h1{font-size:32px;}
+    .hero-copy h1{font-size:30px;}
+    .hero-copy .lede{font-size:16px;}
+    .hero{padding:44px 0 36px;}
+    .section{padding:48px 0;}
+    .section-head{margin-bottom:28px;}
+    .section-head h2{font-size:24px;}
+    .section-head p{font-size:15px;}
+    .section-label{font-size:12px;}
+    .day-selector{padding:4px; gap:5px; margin-bottom:14px; border-radius:10px;}
+    .day-chip{font-size:11px; padding:6px 10px; border-radius:16px;}
+    .day-chip.today::after{font-size:7px; padding:1px 4px; top:-6px; right:-3px;}
+    .menu-filters{gap:6px; margin-bottom:20px;}
+    .filter-chip{font-size:12px; padding:6px 12px;}
+    .menu-grid{grid-template-columns:repeat(2,1fr); gap:12px;}
+    .dish-card, .dish-card.featured-lg, .dish-card.featured-tall{grid-column:span 1; grid-row:auto;}
+    .dish-img, .dish-card.featured-lg .dish-img, .dish-card.featured-tall .dish-img{height:120px;}
+    .dish-body{padding:12px 12px 14px; gap:8px;}
+    .dish-card h3, .dish-card.featured-lg h3, .dish-card.featured-tall h3{font-size:15px; line-height:1.2;}
+    .dish-teaser{font-size:12px; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
+    .cat-badge{font-size:10px; gap:4px;}
+    .cat-badge svg{width:12px; height:12px;}
+    .price-tag, .dish-card.featured-lg .price-tag{font-size:14px;}
+    .see-more{font-size:11px;}
+    .dish-bottom{padding-top:4px;}
+    .dish-card .highlight-badge{font-size:9px; padding:3px 8px; top:8px; left:8px;}
     .cart-drawer{width:100%;}
     .option-toggle{flex-direction:column;}
     .modal-body{padding:22px 22px 0;}
     .modal h3{font-size:22px;}
-    .pupusa-selector { grid-template-columns: 1fr; }
+    .modal-img{height:180px;}
+    .pupusa-selector{grid-template-columns:1fr;}
+    .value-item h3{font-size:16px;}
+    .value-item p{font-size:13.5px;}
+    .testi-quote{font-size:15px;}
+    .foot-grid{grid-template-columns:1fr; gap:24px;}
+    .final-cta h2{font-size:26px;}
+    .final-cta p{font-size:15px;}
+    .bubble-zone{height:100px; margin-top:-8px;}
+    .share-btn{width:28px; height:28px; top:6px; right:6px;}
+    .share-btn svg{width:13px; height:13px;}
+    .back-to-top{bottom:80px; right:18px; width:42px; height:42px;}
+    .back-to-top svg{width:18px; height:18px;}
+    .whatsapp-float{bottom:18px; right:18px; width:50px; height:50px;}
+    .lang-switch{padding:5px 8px; font-size:11.5px;}
+    .lang-btn{font-size:11.5px;}
+  }
+  @media(max-width:380px){
+    .dish-img, .dish-card.featured-lg .dish-img, .dish-card.featured-tall .dish-img{height:100px;}
+    .dish-card h3, .dish-card.featured-lg h3, .dish-card.featured-tall h3{font-size:13.5px;}
+    .dish-body{padding:10px 10px 12px;}
+    .day-chip{font-size:10px; padding:5px 8px;}
+    .filter-chip{font-size:11px; padding:5px 10px;}
   }
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important; transition-duration:0.01ms !important;}
@@ -695,18 +825,23 @@
 <!-- ===================== HEADER ===================== -->
 <header>
   <nav class="nav wrap">
-    <a href="#" class="logo">Karla Sabor De El Pulgarcito<span>cocina salvadoreña</span></a>
+    <a href="#" class="logo">Karla Sabor De El Pulgarcito<span data-i18n="logo.sub">cocina salvadoreña</span></a>
     <div class="nav-links">
-      <a href="#menu">Menú</a>
-      <a href="#promo">Promoción</a>
-      <a href="#preguntas">Preguntas</a>
+      <a href="#menu" data-i18n="nav.menu">Menú</a>
+      <a href="#promo" data-i18n="nav.promo">Promoción</a>
+      <a href="#preguntas" data-i18n="nav.faq">Preguntas</a>
     </div>
     <div class="nav-right">
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      </div>
       <button class="cart-btn" onclick="toggleCart(true)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><path d="M3 6h2l2.4 11.2a1 1 0 0 0 1 .8h9.2a1 1 0 0 0 1-.78L20.5 9H6.3"/><circle cx="9.5" cy="20.5" r="1.2"/><circle cx="17" cy="20.5" r="1.2"/></svg>
-        Mi pedido <span class="cart-badge" id="cart-count">0</span>
+        <span data-i18n="nav.cart">Mi pedido</span> <span class="cart-badge" id="cart-count">0</span>
       </button>
-      <a href="#menu" class="btn btn-primary btn-small">Ver el menú</a>
+      <a href="#menu" class="btn btn-primary btn-small" data-i18n="nav.viewMenu">Ver el menú</a>
     </div>
   </nav>
 </header>
@@ -715,15 +850,15 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
-      <h1>Sabor de <em>El Salvador</em>, hecho en casa.</h1>
-      <p class="lede">Pupusas, platillos y antojitos salvadoreños, preparados el mismo día. Elegís, sumás propina si querés, y coordinás pago y envío.</p>
+      <h1 data-i18n="hero.title">Sabor de <em>El Salvador</em>, hecho en casa.</h1>
+      <p class="lede" data-i18n="hero.lede">Pupusas, platillos y antojitos salvadoreños, preparados el mismo día. Elegís, sumás propina si querés, y coordinás pago y envío.</p>
       <div class="hero-ctas">
-        <a href="#menu" class="btn btn-primary">Ver el menú</a>
+        <a href="#menu" class="btn btn-primary" data-i18n="hero.cta">Ver el menú</a>
       </div>
       <div class="trust-row">
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Pupusas palmeadas a mano</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Curtido fresco cada día</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Hecho el mismo día</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> <span data-i18n="hero.pill1">Pupusas palmeadas a mano</span></span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> <span data-i18n="hero.pill2">Curtido fresco cada día</span></span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> <span data-i18n="hero.pill3">Hecho el mismo día</span></span>
       </div>
     </div>
     <div class="hero-art reveal reveal-delay-2">
@@ -734,7 +869,6 @@
           <img src="artemisa.png" alt="Artemisa">
         </div>
       </div>
-
       <svg viewBox="0 0 320 320" style="width:100%; max-width:280px; height:auto;">
         <ellipse cx="160" cy="235" rx="120" ry="26" fill="#D9C6A3"/>
         <ellipse cx="160" cy="222" rx="118" ry="30" fill="#8C5A3C"/>
@@ -749,11 +883,15 @@
 <!-- ===================== MENU ===================== -->
 <section class="section section-alt" id="menu">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-label">Nuestro menú</div>
-      <h2>Antojitos y <em>platillos típicos</em> salvadoreños</h2>
-      <p>Tocá un plato para elegir entre porción solitaria o combo, ver qué incluye y sumarlo a tu pedido.</p>
+    <div class="menu-head-wrap">
+      <div class="section-head reveal">
+        <div class="section-label" data-i18n="menu.label">Nuestro menú</div>
+        <h2 data-i18n="menu.title">Antojitos y <em>platillos típicos</em> salvadoreños</h2>
+        <p id="menu-subtitle">Cargando menú del día...</p>
+      </div>
+      <div class="bubble-zone" id="bubble-zone" aria-hidden="true"></div>
     </div>
+    <div class="day-selector" id="day-selector"></div>
     <div class="menu-filters" id="filters"></div>
     <div class="menu-grid" id="menu-grid"></div>
   </div>
@@ -763,25 +901,25 @@
 <section class="section">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-label">Por qué Karla Sabor De El Pulgarcito</div>
-      <h2>Pensado para que se sienta <em>como casa</em></h2>
+      <div class="section-label" data-i18n="value.label">Por qué Karla Sabor De El Pulgarcito</div>
+      <h2 data-i18n="value.title">Pensado para que se sienta <em>como casa</em></h2>
     </div>
     <div class="value-grid">
       <div class="value-item reveal">
         <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"><path d="M4 4l16 16M20 4L4 20"/></svg></div>
-        <div><h3>Sin el lavado de platos</h3><p>La parte linda de cocinar en casa, sin la parte que nadie quiere hacer después.</p></div>
+        <div><h3 data-i18n="value.item1.title">Sin el lavado de platos</h3><p data-i18n="value.item1.text">La parte linda de cocinar en casa, sin la parte que nadie quiere hacer después.</p></div>
       </div>
       <div class="value-item reveal reveal-delay-1">
         <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9z"/></svg></div>
-        <div><h3>Recetas de siempre</h3><p>Las mismas que se preparan en las cocinas de El Salvador, sin atajos.</p></div>
+        <div><h3 data-i18n="value.item2.title">Recetas de siempre</h3><p data-i18n="value.item2.text">Las mismas que se preparan en las cocinas de El Salvador, sin atajos.</p></div>
       </div>
       <div class="value-item reveal reveal-delay-2">
         <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
-        <div><h3>Porciones de verdad</h3><p>Pensadas para alguien con hambre real, no para una foto de catálogo.</p></div>
+        <div><h3 data-i18n="value.item3.title">Porciones de verdad</h3><p data-i18n="value.item3.text">Pensadas para alguien con hambre real, no para una foto de catálogo.</p></div>
       </div>
       <div class="value-item reveal reveal-delay-3">
         <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="1.6"><path d="M6 9V6a6 6 0 0 1 12 0v3M4 9h16l-1.5 11a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2L4 9z"/></svg></div>
-        <div><h3>Todo listo para disfrutar</h3><p>higiénico y sin complicaciones.</p></div>
+        <div><h3 data-i18n="value.item4.title">Todo listo para disfrutar</h3><p data-i18n="value.item4.text">higiénico y sin complicaciones.</p></div>
       </div>
     </div>
   </div>
@@ -798,24 +936,24 @@
 <section class="section">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-label">Lo que dicen</div>
-      <h2>Gente que ya no piensa <em>qué cocinar hoy</em></h2>
+      <div class="section-label" data-i18n="testi.label">Lo que dicen</div>
+      <h2 data-i18n="testi.title">Gente que ya no piensa <em>qué cocinar hoy</em></h2>
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
         <p class="testi-quote">"Las pupusas llegaron calientitas y con el curtido bien fresco. Me supo a la cocina de mi abuela."</p>
         <div class="testi-name">Martha Asc.</div>
-        <div class="testi-meta">Pedido por WhatsApp</div>
+        <div class="testi-meta" data-i18n="testi.meta1">Pedido por WhatsApp</div>
       </div>
       <div class="testi-card reveal reveal-delay-1">
         <p class="testi-quote">"Pedí el combo de costillas para toda la familia y no sobró nada."</p>
         <div class="testi-name">Eduardo Asc.</div>
-        <div class="testi-meta">Pedido combo familiar</div>
+        <div class="testi-meta" data-i18n="testi.meta2">Pedido combo familiar</div>
       </div>
       <div class="testi-card reveal reveal-delay-2">
         <p class="testi-quote">"Los tamales de pollo son iguales a los que hacía mi mamá en San Salvador."</p>
         <div class="testi-name">Maria Jose</div>
-        <div class="testi-meta">Pedido porción solitaria</div>
+        <div class="testi-meta" data-i18n="testi.meta3">Pedido porción solitaria</div>
       </div>
     </div>
   </div>
@@ -825,29 +963,33 @@
 <section class="section section-alt" id="preguntas">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-label">Preguntas frecuentes</div>
-      <h2>Antes de que <em>preguntes</em></h2>
+      <div class="section-label" data-i18n="faq.label">Preguntas frecuentes</div>
+      <h2 data-i18n="faq.title">Antes de que <em>preguntes</em></h2>
     </div>
     <div class="faq reveal">
       <details open>
-        <summary>¿Cómo hago el pedido?</summary>
-        <p>Elegís los platos en el menú, decidís si los querés en porción solitaria o combo, y los vas sumando a "Mi pedido". Ahí completás tus datos, elegís el envío y si querés dejar propina, y enviás el pedido por WhatsApp. Coordinamos la dirección y el pago al instante.</p>
+        <summary data-i18n="faq.q1">¿Cómo hago el pedido?</summary>
+        <p data-i18n="faq.a1">Elegís los platos en el menú...</p>
       </details>
       <details>
-        <summary>¿Qué diferencia hay entre porción solitaria y combo?</summary>
-        <p>La porción solitaria es solo el plato principal. El combo suma acompañamiento y bebida, por un precio conjunto más conveniente.</p>
+        <summary data-i18n="faq.q2">¿Qué diferencia hay entre porción solitaria y combo?</summary>
+        <p data-i18n="faq.a2">La porción solitaria es solo el plato principal...</p>
       </details>
       <details>
-        <summary>¿Qué formas de pago aceptan?</summary>
-        <p>Efectivo, transferencia. Coordinás la forma de pago directamente por WhatsApp al confirmar el pedido.</p>
+        <summary data-i18n="faq.q3">¿Qué formas de pago aceptan?</summary>
+        <p data-i18n="faq.a3">Efectivo, transferencia...</p>
       </details>
       <details>
-        <summary>¿Hacen envío o hay que retirar?</summary>
-        <p>Las dos cosas. Podés pedir envío a domicilio con un costo fijo, o recoger en el local sin cargo. Coordinamos la dirección exacta por WhatsApp.</p>
+        <summary data-i18n="faq.q4">¿Hacen envío o hay que retirar?</summary>
+        <p data-i18n="faq.a4">Las dos cosas...</p>
       </details>
       <details>
-        <summary>¿Puedo dejar propina?</summary>
-        <p>Sí, es totalmente opcional. Al armar tu pedido podés elegir un porcentaje sugerido o poner el monto que quieras.</p>
+        <summary data-i18n="faq.q5">¿Puedo dejar propina?</summary>
+        <p data-i18n="faq.a5">Sí, es totalmente opcional...</p>
+      </details>
+      <details>
+        <summary data-i18n="faq.q6">¿El menú cambia todos los días?</summary>
+        <p data-i18n="faq.a6">Sí. Las pupusas, tortas, pastelitos...</p>
       </details>
     </div>
   </div>
@@ -858,10 +1000,10 @@
   <div class="wrap">
     <div class="final-cta reveal">
       <div>
-        <h2>¿Hacemos <em>el pedido</em>?</h2>
-        <p>Elegís tus platos, decidís cómo pagar y cómo lo recibís. Diez minutos y ya está en camino.</p>
+        <h2 data-i18n="cta.title">¿Hacemos <em>el pedido</em>?</h2>
+        <p data-i18n="cta.text">Elegís tus platos, decidís cómo pagar y cómo lo recibís. Diez minutos y ya está en camino.</p>
       </div>
-      <a href="#menu" class="btn btn-primary">Ver el menú</a>
+      <a href="#menu" class="btn btn-primary" data-i18n="cta.btn">Ver el menú</a>
     </div>
   </div>
 </section>
@@ -872,7 +1014,7 @@
     <div class="foot-grid">
       <div>
         <div class="foot-logo">Karla Sabor De El Pulgarcito</div>
-        <p style="margin-top:12px; max-width:32ch;">Pupusas, platillos y antojitos salvadoreños, cocinados de a poco, para cuando extrañás la comida de casa.</p>
+        <p style="margin-top:12px; max-width:32ch;" data-i18n="foot.tagline">Pupusas, platillos y antojitos salvadoreños, cocinados de a poco, para cuando extrañás la comida de casa.</p>
         <div class="social-row">
           <a class="social-btn" href="#" aria-label="TikTok">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.1 1.8 3.6 4 3.9v3c-1.5 0-2.8-.4-4-1.2v6.4c0 3.3-2.6 5.9-5.9 5.9S4.7 18.4 4.7 15.1c0-3.2 2.5-5.7 5.7-5.9v3.1c-1.4.2-2.5 1.4-2.5 2.8 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9V3h2.8z"/></svg>
@@ -886,24 +1028,24 @@
         </div>
       </div>
       <div class="foot-col">
-        <h4>Navegación</h4>
-        <a href="#menu">Menú</a>
-        <a href="#promo">Promoción</a>
-        <a href="#preguntas">Preguntas</a>
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="#menu" data-i18n="nav.menu">Menú</a>
+        <a href="#promo" data-i18n="nav.promo">Promoción</a>
+        <a href="#preguntas" data-i18n="nav.faq">Preguntas</a>
       </div>
       <div class="foot-col">
-        <h4>Entregas</h4>
-        <p>Todos los días</p>
-        <p>Los Ángeles y alrededores</p>
-        <p>10:00 a 18:00 hs</p>
+        <h4 data-i18n="foot.delivery">Entregas</h4>
+        <p data-i18n="foot.days">Todos los días</p>
+        <p data-i18n="foot.zone">Los Ángeles y alrededores</p>
+        <p data-i18n="foot.hours">10:00 a 18:00 hs</p>
       </div>
       <div class="foot-col">
-        <h4>Contacto</h4>
+        <h4 data-i18n="foot.contact">Contacto</h4>
         <a href="#">WhatsApp: (818) 644-3826</a>
         <a href="#">floresalexis920@gmail.com</a>
       </div>
     </div>
-    <div class="foot-bottom">© 2026 Karla Sabor De El Pulgarcito. Cocinado en Los Ángeles.</div>
+    <div class="foot-bottom" data-i18n="foot.copyright">© 2026 Karla Sabor De El Pulgarcito. Cocinado en Los Ángeles.</div>
   </div>
 </footer>
 
@@ -917,12 +1059,28 @@
 <!-- ===================== CART DRAWER ===================== -->
 <div class="cart-drawer" id="cart-drawer">
   <button class="modal-close" onclick="toggleCart(false)" style="position:static; float:right;">×</button>
-  <h3>Mi pedido</h3>
+  <h3><span data-i18n="cart.title">Mi pedido</span> <span id="cart-items-count" style="font-size:14px; color:var(--ink-soft); font-family:'Karla',sans-serif;">(0 ítems)</span></h3>
   <div id="cart-lines"></div>
   <div id="cart-checkout"></div>
 </div>
 
 <div class="toast" id="toast"></div>
+
+<button class="back-to-top" id="back-to-top" onclick="scrollToTop()" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<a href="https://wa.me/18186443826?text=¡Hola%20Karla!%20Quiero%20hacer%20un%20pedido" 
+   target="_blank" 
+   class="whatsapp-float" 
+   aria-label="Pedir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+    <path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.6.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/>
+    <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C4 14.8 3.5 13.4 3.5 12 3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20 12 20z"/>
+  </svg>
+</a>
 
 <script>
 /* ============================================================
@@ -943,294 +1101,302 @@ function money(n){ return '$' + n.toLocaleString('en-US', {minimumFractionDigits
    PLATILLOS DEL MENÚ
    ============================================================ */
 const dishes = [
-  // ---------- PUPUSAS ----------
   {
-    id: 1,
-    cat: 'pupusas',
-    name: 'Pupusas',
+    id: 1, cat: 'pupusas',
+    name: 'Pupusas', name_en: 'Pupusas',
+    fixed: true,
     teaser: 'Elegí tu pupusa favorita: revuelta, queso, frijol con queso o frijol.',
+    teaser_en: 'Choose your favorite pupusa: revuelta, cheese, bean with cheese, or bean.',
     desc: 'Pupusas hechas a mano con masa de maíz. Elegí el relleno que más te guste y coordiná tu pedido.',
+    desc_en: 'Handmade pupusas with corn masa. Choose your favorite filling and coordinate your order.',
     img: ph('pupusas.png','8C5A3C'),
     isPupusas: true,
     pupusaOptions: [
-      { id: 'revuelta', name: 'Pupusa revuelta', desc: 'Frijol, queso y chicharrón', priceSingle: 3.50, priceCombo: 5.00 },
-      { id: 'queso', name: 'Pupusa de queso', desc: 'Queso derretido', priceSingle: 3.50, priceCombo: 5.00 },
-      { id: 'frijol-queso', name: 'Pupusa de frijol con queso', desc: 'Frijol y queso', priceSingle: 3.50, priceCombo: 5.00 },
-      { id: 'frijol', name: 'Pupusa de frijol', desc: 'Frijol refrito', priceSingle: 2.50, priceCombo: 4.00 }
+      { id: 'revuelta', name: 'Pupusa revuelta', name_en: 'Revuelta pupusa', desc: 'Frijol, queso y chicharrón', desc_en: 'Bean, cheese and pork', priceSingle: 3.50, priceCombo: 5.00 },
+      { id: 'queso', name: 'Pupusa de queso', name_en: 'Cheese pupusa', desc: 'Queso derretido', desc_en: 'Melted cheese', priceSingle: 3.50, priceCombo: 5.00 },
+      { id: 'frijol-queso', name: 'Pupusa de frijol con queso', name_en: 'Bean and cheese pupusa', desc: 'Frijol y queso', desc_en: 'Bean and cheese', priceSingle: 3.50, priceCombo: 5.00 },
+      { id: 'frijol', name: 'Pupusa de frijol', name_en: 'Bean pupusa', desc: 'Frijol refrito', desc_en: 'Refried beans', priceSingle: 2.50, priceCombo: 4.00 }
     ],
     includes: ['Curtido casero', 'Salsa roja'],
+    includes_en: ['Homemade curtido', 'Red salsa'],
     comboExtras: ['Curtido extra', 'Horchata o refresco de temporada'],
-    portion: 'Por unidad',
-    priceSingle: 3.00,
-    priceCombo: 4.50
+    comboExtras_en: ['Extra curtido', 'Horchata or seasonal soda'],
+    portion: 'Por unidad', portion_en: 'Per unit',
+    priceSingle: 3.00, priceCombo: 4.50
   },
-
-  // ---------- PLATILLOS ----------
   {
-    id: 2,
-    cat: 'platillos',
-    name: 'Tortitas de carne en salsa',
+    id: 2, cat: 'platillos',
+    name: 'Tortitas de carne en salsa', name_en: 'Meat patties in sauce',
     teaser: 'Tortitas caseras de carne bañadas en salsa de la casa.',
+    teaser_en: 'Homemade meat patties in our house sauce.',
     desc: 'Tortitas de carne de res hechas a mano, bañadas en salsa de tomate casera, acompañadas de arroz y frijoles.',
+    desc_en: 'Handmade beef patties in homemade tomato sauce, served with rice and beans.',
     img: ph('tortitas.png','B14B2A'),
     includes: ['Tortitas de carne', 'Arroz blanco', 'Frijoles refritos', '2 tortillas hechas a mano'],
+    includes_en: ['Meat patties', 'White rice', 'Refried beans', '2 handmade tortillas'],
     comboExtras: ['Ensalada de repollo', 'Refresco de temporada'],
-    portion: '1 porción generosa',
-    priceSingle: 15.00,
-    priceCombo: 17.00
+    comboExtras_en: ['Cabbage salad', 'Seasonal soda'],
+    portion: '1 porción generosa', portion_en: '1 generous portion',
+    priceSingle: 15.00, priceCombo: 17.00
   },
   {
-    id: 3,
-    cat: 'platillos',
-    name: 'Tortas salvadoreñas',
-    teaser: 'Pan francés relleno de frijol, queso, aguacate y curtido.',
-    desc: 'Tortas salvadoreñas tradicionales: pan francés relleno de frijoles refritos, queso fresco, aguacate y curtido.',
-    img: ph('tortas.png','D79B3B'),
-    includes: ['Torta salvadoreña', 'Curtido casero', 'Salsa roja'],
-    comboExtras: ['Aguacate extra', 'Refresco de temporada'],
-    portion: '1 torta',
-    priceSingle: 10.00,
-    priceCombo: 13.00
-  },
-  {
-    id: 4,
-    cat: 'platillos',
-    name: 'Sopa de pollo',
+    id: 4, cat: 'platillos',
+    name: 'Sopa de pollo', name_en: 'Chicken soup',
     teaser: 'Caldo casero de pollo con verduras frescas.',
+    teaser_en: 'Homemade chicken broth with fresh vegetables.',
     desc: 'Sopa de pollo casera con verduras frescas, servida bien caliente como en casa.',
+    desc_en: 'Homemade chicken soup with fresh vegetables, served hot like at home.',
     img: ph('sopa-pollo.png','D79B3B'),
     includes: ['Sopa de pollo', 'Verduras frescas', '2 tortillas hechas a mano'],
+    includes_en: ['Chicken soup', 'Fresh vegetables', '2 handmade tortillas'],
     comboExtras: ['Arroz extra', 'Refresco de temporada'],
-    portion: '1 plato grande',
-    priceSingle: 14.00,
-    priceCombo: 16.50
+    comboExtras_en: ['Extra rice', 'Seasonal soda'],
+    portion: '1 plato grande', portion_en: '1 large plate',
+    priceSingle: 14.00, priceCombo: 16.50
   },
   {
-    id: 5,
-    cat: 'platillos',
-    name: 'Sopa de frijol con carne',
+    id: 5, cat: 'platillos',
+    name: 'Sopa de frijol con carne', name_en: 'Bean soup with meat',
     teaser: 'Sopa espesa de frijol con carne de res bien sazonada.',
+    teaser_en: 'Thick bean soup with well-seasoned beef.',
     desc: 'Sopa de frijol con carne de res cocida a fuego lento, con especias de la casa.',
+    desc_en: 'Bean soup with slow-cooked beef and house spices.',
     img: ph('sopa-frijol.png','8C5A3C'),
     includes: ['Sopa de frijol con carne', '2 tortillas hechas a mano'],
+    includes_en: ['Bean soup with meat', '2 handmade tortillas'],
     comboExtras: ['Arroz extra', 'Refresco de temporada'],
-    portion: '1 plato grande',
-    priceSingle: 15.00,
-    priceCombo: 17.00
+    comboExtras_en: ['Extra rice', 'Seasonal soda'],
+    portion: '1 plato grande', portion_en: '1 large plate',
+    priceSingle: 15.00, priceCombo: 17.00
   },
   {
-    id: 6,
-    cat: 'platillos',
-    name: 'Fajitas de pollo',
+    id: 6, cat: 'platillos',
+    name: 'Fajitas de pollo', name_en: 'Chicken fajitas',
     teaser: 'Pollo a la plancha con pimientos y cebolla.',
+    teaser_en: 'Grilled chicken with peppers and onion.',
     desc: 'Fajitas de pollo a la plancha con pimientos, cebolla y tortillas hechas a mano.',
+    desc_en: 'Grilled chicken fajitas with peppers, onion and handmade tortillas.',
     img: ph('fajitas.png','B14B2A'),
     includes: ['Fajitas de pollo', 'Pimientos y cebolla', '2 tortillas hechas a mano'],
+    includes_en: ['Chicken fajitas', 'Peppers and onion', '2 handmade tortillas'],
     comboExtras: ['Frijoles refritos', 'Refresco de temporada'],
-    portion: '1 porción generosa',
-    priceSingle: 14.00,
-    priceCombo: 17.50,
+    comboExtras_en: ['Refried beans', 'Seasonal soda'],
+    portion: '1 porción generosa', portion_en: '1 generous portion',
+    priceSingle: 14.00, priceCombo: 17.50,
     featured: 'lg'
   },
   {
-    id: 7,
-    cat: 'platillos',
-    name: 'Pollo horneado',
+    id: 7, cat: 'platillos',
+    name: 'Pollo horneado', name_en: 'Roasted chicken',
     teaser: 'Pollo horneado con especias de la casa.',
+    teaser_en: 'Roasted chicken with house spices.',
     desc: 'Pollo horneado lentamente con especias de la casa, acompañado de arroz y frijoles.',
+    desc_en: 'Slow-roasted chicken with house spices, served with rice and beans.',
     img: ph('pollo-horneado.png','D79B3B'),
     includes: ['Pollo horneado', 'Arroz blanco', 'Frijoles refritos', '2 tortillas hechas a mano'],
+    includes_en: ['Roasted chicken', 'White rice', 'Refried beans', '2 handmade tortillas'],
     comboExtras: ['Ensalada de repollo', 'Refresco de temporada'],
-    portion: '1 porción generosa',
-    priceSingle: 13.50,
-    priceCombo: 17.00
+    comboExtras_en: ['Cabbage salad', 'Seasonal soda'],
+    portion: '1 porción generosa', portion_en: '1 generous portion',
+    priceSingle: 13.50, priceCombo: 17.00
   },
   {
-    id: 8,
-    cat: 'platillos',
-    name: 'Costillas en salsa verde',
+    id: 8, cat: 'platillos',
+    name: 'Costillas en salsa verde', name_en: 'Ribs in green salsa',
     teaser: 'Costillas de cerdo/res en salsa verde de tomatillo.',
+    teaser_en: 'Pork/beef ribs in tomatillo green salsa.',
     desc: 'Costillas de cerdo/res cocidas a fuego lento en salsa verde de tomatillo, acompañadas de arroz y frijoles.',
+    desc_en: 'Slow-cooked pork/beef ribs in tomatillo green salsa, served with rice and beans.',
     img: ph('costillas.png','5F6A3C'),
     includes: ['Costillas en salsa verde', 'Arroz blanco', 'Frijoles refritos', '2 tortillas hechas a mano'],
+    includes_en: ['Ribs in green salsa', 'White rice', 'Refried beans', '2 handmade tortillas'],
     comboExtras: ['Ensalada de repollo', 'Refresco de temporada'],
-    portion: '1 porción generosa',
-    priceSingle: 15.00,
-    priceCombo: 18.50,
+    comboExtras_en: ['Cabbage salad', 'Seasonal soda'],
+    portion: '1 porción generosa', portion_en: '1 generous portion',
+    priceSingle: 15.00, priceCombo: 18.50,
     featured: 'tall'
   },
   {
-    id: 9,
-    cat: 'platillos',
-    name: 'Tamales de pollo',
+    id: 9, cat: 'platillos',
+    name: 'Tamales de pollo', name_en: 'Chicken tamales',
     teaser: 'Tamales de pollo envueltos en hoja de plátano.',
+    teaser_en: 'Chicken tamales wrapped in banana leaf.',
     desc: 'Tamales de pollo tradicionales, envueltos en hoja de plátano y cocidos al vapor.',
+    desc_en: 'Traditional chicken tamales, wrapped in banana leaf and steamed.',
     img: ph('tamales-pollo.png','B14B2A'),
     includes: ['2 tamales de pollo', 'Curtido casero'],
+    includes_en: ['2 chicken tamales', 'Homemade curtido'],
     comboExtras: ['Café de olla', 'Refresco de temporada'],
-    portion: 'Orden de 2',
-    priceSingle: 9.00,
-    priceCombo: 12.00
+    comboExtras_en: ['Coffee', 'Seasonal soda'],
+    portion: 'Orden de 2', portion_en: 'Order of 2',
+    priceSingle: 9.00, priceCombo: 12.00
   },
   {
-    id: 10,
-    cat: 'platillos',
-    name: 'Enchiladas salvadoreñas',
+    id: 3, cat: 'platillos',
+    name: 'Tortas salvadoreñas', name_en: 'Salvadoran tortas',
+    fixed: true,
+    teaser: 'Pan francés relleno de frijol, queso, aguacate y curtido.',
+    teaser_en: 'French bread stuffed with beans, cheese, avocado and curtido.',
+    desc: 'Tortas salvadoreñas tradicionales: pan francés relleno de frijoles refritos, queso fresco, aguacate y curtido.',
+    desc_en: 'Traditional Salvadoran tortas: French bread stuffed with refried beans, fresh cheese, avocado and curtido.',
+    img: ph('tortas.png','D79B3B'),
+    includes: ['Torta salvadoreña', 'Curtido casero', 'Salsa roja'],
+    includes_en: ['Salvadoran torta', 'Homemade curtido', 'Red salsa'],
+    comboExtras: ['Aguacate extra', 'Refresco de temporada'],
+    comboExtras_en: ['Extra avocado', 'Seasonal soda'],
+    portion: '1 torta', portion_en: '1 torta',
+    priceSingle: 10.00, priceCombo: 13.00
+  },
+  {
+    id: 10, cat: 'platillos',
+    name: 'Enchiladas salvadoreñas', name_en: 'Salvadoran enchiladas',
+    fixed: true,
     teaser: 'Enchiladas con curtido, huevo y salsa de tomate.',
+    teaser_en: 'Enchiladas with curtido, egg and tomato sauce.',
     desc: 'Enchiladas salvadoreñas tradicionales: tortillas fritas con frijol, curtido, huevo duro y salsa de tomate.',
+    desc_en: 'Traditional Salvadoran enchiladas: fried tortillas with beans, curtido, boiled egg and tomato sauce.',
     img: ph('enchiladas.png','B14B2A'),
     includes: ['Enchiladas salvadoreñas', 'Curtido casero', 'Huevo duro'],
+    includes_en: ['Salvadoran enchiladas', 'Homemade curtido', 'Boiled egg'],
     comboExtras: ['Aguacate extra', 'Refresco de temporada'],
-    portion: 'Orden de 3',
-    priceSingle: 8.00,
-    priceCombo: 11.00
+    comboExtras_en: ['Extra avocado', 'Seasonal soda'],
+    portion: 'Orden de 3', portion_en: 'Order of 3',
+    priceSingle: 8.00, priceCombo: 11.00
   },
   {
-    id: 11,
-    cat: 'platillos',
-    name: 'Pastelitos salvadoreños',
+    id: 11, cat: 'platillos',
+    name: 'Pastelitos salvadoreños', name_en: 'Salvadoran pastelitos',
+    fixed: true,
     teaser: 'Pastelitos crujientes rellenos de papa y carne.',
+    teaser_en: 'Crispy pastelitos stuffed with potato and meat.',
     desc: 'Pastelitos salvadoreños: masa rellena de papa y carne, fritos hasta quedar crujientes.',
+    desc_en: 'Salvadoran pastelitos: masa stuffed with potato and meat, fried until crispy.',
     img: ph('pastelitos.png','D79B3B'),
     includes: ['3 pastelitos salvadoreños', 'Curtido casero', 'Salsa roja'],
+    includes_en: ['3 Salvadoran pastelitos', 'Homemade curtido', 'Red salsa'],
     comboExtras: ['Aguacate extra', 'Refresco de temporada'],
-    portion: 'Orden de 3',
-    priceSingle: 8.00,
-    priceCombo: 11.00
+    comboExtras_en: ['Extra avocado', 'Seasonal soda'],
+    portion: 'Orden de 3', portion_en: 'Order of 3',
+    priceSingle: 8.00, priceCombo: 11.00
   },
-
-  // ---------- JUGOS ----------
   {
-    id: 12,
-    cat: 'jugos',
-    name: 'Horchata',
+    id: 12, cat: 'jugos',
+    name: 'Horchata', name_en: 'Horchata',
+    fixed: true,
     teaser: 'Bebida tradicional salvadoreña, dulce y cremosa.',
+    teaser_en: 'Traditional Salvadoran drink, sweet and creamy.',
     desc: 'Horchata casera hecha con arroz, canela y un toque de vainilla. Servida bien fría.',
+    desc_en: 'Homemade horchata made with rice, cinnamon and a touch of vanilla. Served cold.',
     img: ph('horchata.png','D79B3B'),
-    includes: ['Vaso mediano de horchata'],
-    comboExtras: [],
-    portion: '1 vaso mediano',
-    priceSingle: 5.00,
-    priceCombo: 5.00
+    includes: ['Vaso mediano de horchata'], includes_en: ['Medium glass of horchata'],
+    comboExtras: [], portion: '1 vaso mediano', portion_en: '1 medium glass',
+    priceSingle: 5.00, priceCombo: 5.00
   },
   {
-    id: 13,
-    cat: 'jugos',
-    name: 'Jamaica',
+    id: 13, cat: 'jugos',
+    name: 'Jamaica', name_en: 'Hibiscus',
+    fixed: true,
     teaser: 'Agua fresca de flor de jamaica, refrescante y natural.',
+    teaser_en: 'Fresh hibiscus water, refreshing and natural.',
     desc: 'Agua de jamaica natural, ligeramente ácida y muy refrescante. Servida bien fría.',
+    desc_en: 'Natural hibiscus water, slightly tart and very refreshing. Served cold.',
     img: ph('jamaica.png','B14B2A'),
-    includes: ['Vaso mediano de jamaica'],
-    comboExtras: [],
-    portion: '1 vaso mediano',
-    priceSingle: 5.00,
-    priceCombo: 5.00
+    includes: ['Vaso mediano de jamaica'], includes_en: ['Medium glass of hibiscus'],
+    comboExtras: [], portion: '1 vaso mediano', portion_en: '1 medium glass',
+    priceSingle: 5.00, priceCombo: 5.00
   },
   {
-    id: 14,
-    cat: 'jugos',
-    name: 'Melón',
+    id: 14, cat: 'jugos',
+    name: 'Melón', name_en: 'Melon',
+    fixed: true,
     teaser: 'Agua fresca de melón, dulce y natural.',
+    teaser_en: 'Fresh melon water, sweet and natural.',
     desc: 'Agua fresca de melón recién hecha, dulce y muy refrescante.',
+    desc_en: 'Freshly made melon water, sweet and very refreshing.',
     img: ph('melon.png','5F6A3C'),
-    includes: ['Vaso mediano de melón'],
-    comboExtras: [],
-    portion: '1 vaso mediano',
-    priceSingle: 5.00,
-    priceCombo: 5.00
+    includes: ['Vaso mediano de melón'], includes_en: ['Medium glass of melon'],
+    comboExtras: [], portion: '1 vaso mediano', portion_en: '1 medium glass',
+    priceSingle: 5.00, priceCombo: 5.00
   },
   {
-    id: 15,
-    cat: 'jugos',
-    name: 'Sandía',
+    id: 15, cat: 'jugos',
+    name: 'Sandía', name_en: 'Watermelon',
+    fixed: true,
     teaser: 'Agua fresca de sandía, dulce y muy refrescante.',
+    teaser_en: 'Fresh watermelon water, sweet and very refreshing.',
     desc: 'Agua fresca de sandía natural, ideal para los días calurosos.',
+    desc_en: 'Natural watermelon water, ideal for hot days.',
     img: ph('sandia.png','B14B2A'),
-    includes: ['Vaso mediano de sandía'],
-    comboExtras: [],
-    portion: '1 vaso mediano',
-    priceSingle: 5.00,
-    priceCombo: 5.00
+    includes: ['Vaso mediano de sandía'], includes_en: ['Medium glass of watermelon'],
+    comboExtras: [], portion: '1 vaso mediano', portion_en: '1 medium glass',
+    priceSingle: 5.00, priceCombo: 5.00
   },
-
-  // ---------- SODAS ----------
   {
-    id: 16,
-    cat: 'sodas',
-    name: 'Coca-Cola',
-    teaser: 'Soda clásica, servida bien fría.',
-    desc: 'Coca-Cola bien fría, la clásica que nunca falla.',
+    id: 16, cat: 'sodas',
+    name: 'Coca-Cola', name_en: 'Coca-Cola',
+    fixed: true,
+    teaser: 'Soda clásica, servida bien fría.', teaser_en: 'Classic soda, served cold.',
+    desc: 'Coca-Cola bien fría, la clásica que nunca falla.', desc_en: 'Ice-cold Coca-Cola, the classic that never fails.',
     img: ph('coca-cola.png','B14B2A'),
-    includes: ['1 refresco'],
-    comboExtras: [],
-    portion: '1 refresco',
-    priceSingle: 2.00,
-    priceCombo: 2.00
+    includes: ['1 refresco'], includes_en: ['1 soda'],
+    comboExtras: [], portion: '1 refresco', portion_en: '1 soda',
+    priceSingle: 2.00, priceCombo: 2.00
   },
   {
-    id: 17,
-    cat: 'sodas',
-    name: 'Sprite',
-    teaser: 'Soda de lima-limón, refrescante.',
-    desc: 'Sprite bien fría, con su sabor cítrico inconfundible.',
+    id: 17, cat: 'sodas',
+    name: 'Sprite', name_en: 'Sprite',
+    fixed: true,
+    teaser: 'Soda de lima-limón, refrescante.', teaser_en: 'Lemon-lime soda, refreshing.',
+    desc: 'Sprite bien fría, con su sabor cítrico inconfundible.', desc_en: 'Ice-cold Sprite, with its unmistakable citrus flavor.',
     img: ph('sprite.png','5F6A3C'),
-    includes: ['1 refresco'],
-    comboExtras: [],
-    portion: '1 refresco',
-    priceSingle: 2.00,
-    priceCombo: 2.00
+    includes: ['1 refresco'], includes_en: ['1 soda'],
+    comboExtras: [], portion: '1 refresco', portion_en: '1 soda',
+    priceSingle: 2.00, priceCombo: 2.00
   },
   {
-    id: 18,
-    cat: 'sodas',
-    name: 'Seven Up',
-    teaser: 'Soda de lima-limón, suave y refrescante.',
-    desc: 'Seven Up bien fría, burbujeante y refrescante.',
+    id: 18, cat: 'sodas',
+    name: 'Seven Up', name_en: 'Seven Up',
+    fixed: true,
+    teaser: 'Soda de lima-limón, suave y refrescante.', teaser_en: 'Lemon-lime soda, smooth and refreshing.',
+    desc: 'Seven Up bien fría, burbujeante y refrescante.', desc_en: 'Ice-cold Seven Up, bubbly and refreshing.',
     img: ph('seven-up.png','5F6A3C'),
-    includes: ['1 refresco'],
-    comboExtras: [],
-    portion: '1 refresco',
-    priceSingle: 2.00,
-    priceCombo: 2.00
+    includes: ['1 refresco'], includes_en: ['1 soda'],
+    comboExtras: [], portion: '1 refresco', portion_en: '1 soda',
+    priceSingle: 2.00, priceCombo: 2.00
   },
   {
-    id: 19,
-    cat: 'sodas',
-    name: 'Squirt',
-    teaser: 'Soda de toronja, dulce y cítrica.',
-    desc: 'Squirt bien fría, con su sabor único a toronja.',
+    id: 19, cat: 'sodas',
+    name: 'Squirt', name_en: 'Squirt',
+    fixed: true,
+    teaser: 'Soda de toronja, dulce y cítrica.', teaser_en: 'Grapefruit soda, sweet and citrusy.',
+    desc: 'Squirt bien fría, con su sabor único a toronja.', desc_en: 'Ice-cold Squirt, with its unique grapefruit flavor.',
     img: ph('squirt.png','D79B3B'),
-    includes: ['1 refresco'],
-    comboExtras: [],
-    portion: '1 refresco',
-    priceSingle: 2.00,
-    priceCombo: 2.00
+    includes: ['1 refresco'], includes_en: ['1 soda'],
+    comboExtras: [], portion: '1 refresco', portion_en: '1 soda',
+    priceSingle: 2.00, priceCombo: 2.00
   },
   {
-    id: 20,
-    cat: 'sodas',
-    name: 'Pepsi',
-    teaser: 'Soda clásica de cola, servida bien fría.',
-    desc: 'Pepsi bien fría, la clásica de siempre.',
+    id: 20, cat: 'sodas',
+    name: 'Pepsi', name_en: 'Pepsi',
+    fixed: true,
+    teaser: 'Soda clásica de cola, servida bien fría.', teaser_en: 'Classic cola soda, served cold.',
+    desc: 'Pepsi bien fría, la clásica de siempre.', desc_en: 'Ice-cold Pepsi, the classic.',
     img: ph('pepsi.png','2B2018'),
-    includes: ['1 refresco'],
-    comboExtras: [],
-    portion: '1 refresco',
-    priceSingle: 2.00,
-    priceCombo: 2.00
+    includes: ['1 refresco'], includes_en: ['1 soda'],
+    comboExtras: [], portion: '1 refresco', portion_en: '1 soda',
+    priceSingle: 2.00, priceCombo: 2.00
   },
   {
-    id: 21,
-    cat: 'tortillas',
-    name: 'Tortillas extra',
-    teaser: 'Dos tortillas hechas a mano, calientitas.',
+    id: 21, cat: 'tortillas',
+    name: 'Tortillas extra', name_en: 'Extra tortillas',
+    fixed: true,
+    teaser: 'Dos tortillas hechas a mano, calientitas.', teaser_en: 'Two handmade tortillas, warm.',
     desc: 'Orden de dos tortillas de maíz hechas a mano, recién palmeadas y cocidas al comal. Ideales para acompañar cualquier platillo.',
+    desc_en: 'Order of two handmade corn tortillas, freshly pressed and cooked on the comal. Perfect to accompany any dish.',
     img: ph('tortillas.png','D79B3B'),
-    includes: ['2 tortillas hechas a mano'],
-    comboExtras: [],
-    portion: 'Orden de 2',
-    priceSingle: 1.00,
-    priceCombo: 1.00
+    includes: ['2 tortillas hechas a mano'], includes_en: ['2 handmade tortillas'],
+    comboExtras: [], portion: 'Orden de 2', portion_en: 'Order of 2',
+    priceSingle: 1.00, priceCombo: 1.00
   }
 ];
 
@@ -1243,75 +1409,467 @@ const CATS = [
   {id:'tortillas', label:'Tortillas extra'}
 ];
 const DELIVERY_OPTIONS = [
-  {id:'delivery', label:'Envío a domicilio', cost:4.99},
-  {id:'recoger', label:'Recoger en el local', cost:0}
+  {id:'delivery', label:'Envío a domicilio', label_en:'Home delivery', cost:4.99},
+  {id:'recoger', label:'Recoger en el local', label_en:'Pick up at location', cost:0}
 ];
 const TIP_OPTIONS = [0,10,15,20];
 
+const WEEKLY_MENU = {
+  1: [7], 2: [6], 3: [8], 4: [9], 5: [2], 6: [4], 0: [5]
+};
+
+const DAY_NAMES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+const DAY_NAMES_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+let currentLang = 'es';
+let selectedDay = new Date().getDay();
 let activeFilter = 'todos';
 let cart = [];
 let modalOption = 'single';
 let selectedPupusa = null;
+let modalQty = 1;
 let selectedDelivery = DELIVERY_OPTIONS[0].id;
 let selectedTip = 15;
 let customTipActive = false;
 let customTipValue = '';
 
-// ===================== DATOS DEL CLIENTE (persistencia) =====================
-// Guardamos los datos aquí para que NO se borren al re-renderizar el carrito
-const customerData = {
-  name: '',
-  phone: ''
+const customerData = { name: '', phone: '', notes: '' };
+
+/* ============================================================
+   TRADUCCIONES
+   ============================================================ */
+const TRANSLATIONS = {
+  es: {
+    'logo.sub': 'cocina salvadoreña',
+    'nav.menu': 'Menú',
+    'nav.promo': 'Promoción',
+    'nav.faq': 'Preguntas',
+    'nav.cart': 'Mi pedido',
+    'nav.viewMenu': 'Ver el menú',
+    'hero.title': 'Sabor de <em>El Salvador</em>, hecho en casa.',
+    'hero.lede': 'Pupusas, platillos y antojitos salvadoreños, preparados el mismo día. Elegís, sumás propina si querés, y coordinás pago y envío.',
+    'hero.cta': 'Ver el menú',
+    'hero.pill1': 'Pupusas palmeadas a mano',
+    'hero.pill2': 'Curtido fresco cada día',
+    'hero.pill3': 'Hecho el mismo día',
+    'menu.label': 'Nuestro menú',
+    'menu.title': 'Antojitos y <em>platillos típicos</em> salvadoreños',
+    'menu.subtitlePrefix': 'Menú de',
+    'menu.subtitleToday': 'hoy',
+    'menu.subtitleStrong': 'Plato fuerte del día:',
+    'filter.all': 'Todos',
+    'filter.pupusas': 'Pupusas',
+    'filter.platillos': 'Platillos',
+    'filter.jugos': 'Jugos',
+    'filter.sodas': 'Sodas',
+    'filter.tortillas': 'Tortillas extra',
+    'value.label': 'Por qué Karla Sabor De El Pulgarcito',
+    'value.title': 'Pensado para que se sienta <em>como casa</em>',
+    'value.item1.title': 'Sin el lavado de platos',
+    'value.item1.text': 'La parte linda de cocinar en casa, sin la parte que nadie quiere hacer después.',
+    'value.item2.title': 'Recetas de siempre',
+    'value.item2.text': 'Las mismas que se preparan en las cocinas de El Salvador, sin atajos.',
+    'value.item3.title': 'Porciones de verdad',
+    'value.item3.text': 'Pensadas para alguien con hambre real, no para una foto de catálogo.',
+    'value.item4.title': 'Todo listo para disfrutar',
+    'value.item4.text': 'higiénico y sin complicaciones.',
+    'testi.label': 'Lo que dicen',
+    'testi.title': 'Gente que ya no piensa <em>qué cocinar hoy</em>',
+    'testi.meta1': 'Pedido por WhatsApp',
+    'testi.meta2': 'Pedido combo familiar',
+    'testi.meta3': 'Pedido porción solitaria',
+    'faq.label': 'Preguntas frecuentes',
+    'faq.title': 'Antes de que <em>preguntes</em>',
+    'faq.q1': '¿Cómo hago el pedido?',
+    'faq.a1': 'Elegís los platos en el menú, decidís si los querés en porción solitaria o combo, y los vas sumando a "Mi pedido". Ahí completás tus datos, elegís el envío y si querés dejar propina, y enviás el pedido por WhatsApp. Coordinamos la dirección y el pago al instante.',
+    'faq.q2': '¿Qué diferencia hay entre porción solitaria y combo?',
+    'faq.a2': 'La porción solitaria es solo el plato principal. El combo suma acompañamiento y bebida, por un precio conjunto más conveniente.',
+    'faq.q3': '¿Qué formas de pago aceptan?',
+    'faq.a3': 'Efectivo, transferencia. Coordinás la forma de pago directamente por WhatsApp al confirmar el pedido.',
+    'faq.q4': '¿Hacen envío o hay que retirar?',
+    'faq.a4': 'Las dos cosas. Podés pedir envío a domicilio con un costo fijo, o recoger en el local sin cargo. Coordinamos la dirección exacta por WhatsApp.',
+    'faq.q5': '¿Puedo dejar propina?',
+    'faq.a5': 'Sí, es totalmente opcional. Al armar tu pedido podés elegir un porcentaje sugerido o poner el monto que quieras.',
+    'faq.q6': '¿El menú cambia todos los días?',
+    'faq.a6': 'Sí. Las pupusas, tortas, pastelitos, enchiladas, tortillas y bebidas están disponibles todos los días. Los platos fuertes rotan: cada día hay uno diferente. Podés ver el menú de cada día en el selector de arriba.',
+    'cta.title': '¿Hacemos <em>el pedido</em>?',
+    'cta.text': 'Elegís tus platos, decidís cómo pagar y cómo lo recibís. Diez minutos y ya está en camino.',
+    'cta.btn': 'Ver el menú',
+    'foot.nav': 'Navegación',
+    'foot.delivery': 'Entregas',
+    'foot.contact': 'Contacto',
+    'foot.days': 'Todos los días',
+    'foot.zone': 'Los Ángeles y alrededores',
+    'foot.hours': '10:00 a 18:00 hs',
+    'foot.copyright': '© 2026 Karla Sabor De El Pulgarcito. Cocinado en Los Ángeles.',
+    'foot.tagline': 'Pupusas, platillos y antojitos salvadoreños, cocinados de a poco, para cuando extrañás la comida de casa.',
+    'cart.title': 'Mi pedido',
+    'cart.items': 'ítems',
+    'cart.empty': 'Todavía no agregaste ningún plato. Mirá el menú y elegí porción solitaria o combo.',
+    'cart.remove': 'Quitar',
+    'cart.yourData': 'Tus datos',
+    'cart.namePlaceholder': 'Nombre completo',
+    'cart.phonePlaceholder': 'Teléfono (ej: 818 644 3826)',
+    'cart.notesPlaceholder': 'Notas (ej: sin cebolla, extra curtido, timbre 3)',
+    'cart.deliveryLabel': 'Entrega',
+    'cart.deliveryNote': 'La dirección exacta la coordinamos por WhatsApp.',
+    'cart.zoneNote': 'Zona de envío: Los Ángeles y alrededores. Fuera de zona, consultar por WhatsApp.',
+    'cart.tipLabel': 'Propina (opcional)',
+    'cart.tipNone': 'Sin propina',
+    'cart.tipOther': 'Otro monto',
+    'cart.subtotal': 'Subtotal',
+    'cart.shipping': 'Envío',
+    'cart.tip': 'Propina',
+    'cart.total': 'Total',
+    'cart.send': 'Enviar Pedido',
+    'cart.sending': 'Enviando...',
+    'cart.free': 'Sin costo',
+    'cart.tipCustom': 'Monto en USD',
+    'modal.single': 'Porción solitaria',
+    'modal.combo': 'Combo',
+    'modal.singleDesc': 'Solo el plato principal',
+    'modal.comboDesc': 'Suma acompañamiento y bebida',
+    'modal.quantity': 'Cantidad',
+    'modal.price': 'Precio',
+    'modal.portion': 'Porción',
+    'modal.includes': 'Qué incluye',
+    'modal.add': 'Agregar a mi pedido',
+    'modal.keep': 'Seguir viendo',
+    'modal.choosePupusa': 'Elegí tu pupusa',
+    'modal.pupusaSingle': '1 pupusa individual',
+    'modal.pupusaCombo': 'Pupusa + bebida',
+    'toast.added': 'se sumó a tu pedido',
+    'toast.copied': 'Link copiado al portapapeles 📋',
+    'toast.copyError': 'No se pudo copiar el link',
+    'toast.sent': '¡Pedido enviado por WhatsApp! 📱',
+    'toast.missing': 'Por favor completá nombre y teléfono',
+    'toast.phoneError': 'Por favor ingresá un teléfono válido',
+    'badge.recommended': '★ Recomendado',
+    'badge.popular': '★ Popular',
+    'dish.from': 'Desde',
+    'dish.seeOptions': 'Ver opciones',
+    'wa.greeting': '¡Hola Karla! Quiero hacer este pedido:',
+    'wa.delivery': 'Entrega',
+    'wa.notes': 'Notas',
+    'wa.none': 'Ninguna',
+    'wa.forDay': 'Pedido para',
+    'wa.coord': '(La dirección exacta la coordinamos por acá 🙌)',
+    'wa.client': 'Cliente',
+    'wa.phone': 'Teléfono'
+  },
+  en: {
+    'logo.sub': 'Salvadoran kitchen',
+    'nav.menu': 'Menu',
+    'nav.promo': 'Promo',
+    'nav.faq': 'FAQ',
+    'nav.cart': 'My order',
+    'nav.viewMenu': 'View menu',
+    'hero.title': 'Flavor of <em>El Salvador</em>, made at home.',
+    'hero.lede': 'Salvadoran pupusas, dishes, and snacks, made the same day. Choose, add a tip if you want, and coordinate payment and delivery.',
+    'hero.cta': 'View menu',
+    'hero.pill1': 'Hand-pressed pupusas',
+    'hero.pill2': 'Fresh curtido daily',
+    'hero.pill3': 'Made the same day',
+    'menu.label': 'Our menu',
+    'menu.title': 'Salvadoran <em>snacks and typical dishes</em>',
+    'menu.subtitlePrefix': 'Menu for',
+    'menu.subtitleToday': 'today',
+    'menu.subtitleStrong': "Today's special:",
+    'filter.all': 'All',
+    'filter.pupusas': 'Pupusas',
+    'filter.platillos': 'Dishes',
+    'filter.jugos': 'Juices',
+    'filter.sodas': 'Sodas',
+    'filter.tortillas': 'Extra tortillas',
+    'value.label': 'Why Karla Sabor De El Pulgarcito',
+    'value.title': 'Designed to feel <em>like home</em>',
+    'value.item1.title': 'No dishes to wash',
+    'value.item1.text': "The best part of cooking at home, without the part nobody wants to do after.",
+    'value.item2.title': 'Classic recipes',
+    'value.item2.text': 'The same ones prepared in Salvadoran kitchens, no shortcuts.',
+    'value.item3.title': 'Real portions',
+    'value.item3.text': 'Made for someone with real hunger, not for a catalog photo.',
+    'value.item4.title': 'Ready to enjoy',
+    'value.item4.text': 'hygienic and hassle-free.',
+    'testi.label': 'What they say',
+    'testi.title': 'People who no longer wonder <em>what to cook today</em>',
+    'testi.meta1': 'Ordered via WhatsApp',
+    'testi.meta2': 'Family combo order',
+    'testi.meta3': 'Single portion order',
+    'faq.label': 'Frequently asked questions',
+    'faq.title': 'Before you <em>ask</em>',
+    'faq.q1': 'How do I place an order?',
+    'faq.a1': 'Choose the dishes from the menu, decide if you want them as a single portion or combo, and add them to "My order". There you complete your info, choose delivery and whether to leave a tip, and send the order via WhatsApp. We coordinate the address and payment right away.',
+    'faq.q2': "What's the difference between single portion and combo?",
+    'faq.a2': 'The single portion is just the main dish. The combo adds a side and a drink, at a more convenient combined price.',
+    'faq.q3': 'What payment methods do you accept?',
+    'faq.a3': 'Cash, bank transfer. You coordinate the payment method directly via WhatsApp when confirming the order.',
+    'faq.q4': 'Do you deliver or do I need to pick up?',
+    'faq.a4': 'Both. You can request home delivery with a fixed cost, or pick up at the location free of charge. We coordinate the exact address via WhatsApp.',
+    'faq.q5': 'Can I leave a tip?',
+    'faq.a5': "Yes, it's completely optional. When building your order you can choose a suggested percentage or enter any amount you want.",
+    'faq.q6': 'Does the menu change every day?',
+    'faq.a6': 'Yes. Pupusas, tortas, pastelitos, enchiladas, tortillas, and drinks are available every day. The main dishes rotate: a different one each day. You can see the menu for each day in the selector above.',
+    'cta.title': "Shall we <em>place the order</em>?",
+    'cta.text': "Choose your dishes, decide how to pay and how to receive them. Ten minutes and it's on its way.",
+    'cta.btn': 'View menu',
+    'foot.nav': 'Navigation',
+    'foot.delivery': 'Delivery',
+    'foot.contact': 'Contact',
+    'foot.days': 'Every day',
+    'foot.zone': 'Los Angeles and surroundings',
+    'foot.hours': '10:00 AM to 6:00 PM',
+    'foot.copyright': '© 2026 Karla Sabor De El Pulgarcito. Cooked in Los Angeles.',
+    'foot.tagline': 'Salvadoran pupusas, dishes, and snacks, cooked slowly, for when you miss home cooking.',
+    'cart.title': 'My order',
+    'cart.items': 'items',
+    'cart.empty': "You haven't added any dishes yet. Check the menu and choose single portion or combo.",
+    'cart.remove': 'Remove',
+    'cart.yourData': 'Your info',
+    'cart.namePlaceholder': 'Full name',
+    'cart.phonePlaceholder': 'Phone (e.g. 818 644 3826)',
+    'cart.notesPlaceholder': 'Notes (e.g. no onion, extra curtido, ring 3)',
+    'cart.deliveryLabel': 'Delivery',
+    'cart.deliveryNote': 'We coordinate the exact address via WhatsApp.',
+    'cart.zoneNote': 'Delivery zone: Los Angeles and surroundings. Outside the zone, ask via WhatsApp.',
+    'cart.tipLabel': 'Tip (optional)',
+    'cart.tipNone': 'No tip',
+    'cart.tipOther': 'Other amount',
+    'cart.subtotal': 'Subtotal',
+    'cart.shipping': 'Shipping',
+    'cart.tip': 'Tip',
+    'cart.total': 'Total',
+    'cart.send': 'Send Order',
+    'cart.sending': 'Sending...',
+    'cart.free': 'Free',
+    'cart.tipCustom': 'Amount in USD',
+    'modal.single': 'Single portion',
+    'modal.combo': 'Combo',
+    'modal.singleDesc': 'Just the main dish',
+    'modal.comboDesc': 'Adds side and drink',
+    'modal.quantity': 'Quantity',
+    'modal.price': 'Price',
+    'modal.portion': 'Portion',
+    'modal.includes': "What's included",
+    'modal.add': 'Add to my order',
+    'modal.keep': 'Keep browsing',
+    'modal.choosePupusa': 'Choose your pupusa',
+    'modal.pupusaSingle': '1 individual pupusa',
+    'modal.pupusaCombo': 'Pupusa + drink',
+    'toast.added': 'was added to your order',
+    'toast.copied': 'Link copied to clipboard 📋',
+    'toast.copyError': "Couldn't copy the link",
+    'toast.sent': 'Order sent via WhatsApp! 📱',
+    'toast.missing': 'Please complete name and phone',
+    'toast.phoneError': 'Please enter a valid phone number',
+    'badge.recommended': '★ Recommended',
+    'badge.popular': '★ Popular',
+    'dish.from': 'From',
+    'dish.seeOptions': 'See options',
+    'wa.greeting': "Hi Karla! I'd like to place this order:",
+    'wa.delivery': 'Delivery',
+    'wa.notes': 'Notes',
+    'wa.none': 'None',
+    'wa.forDay': 'Order for',
+    'wa.coord': "(We'll coordinate the exact address here 🙌)",
+    'wa.client': 'Customer',
+    'wa.phone': 'Phone'
+  }
 };
+
+function t(key){
+  return (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang][key]) || key;
+}
+function dayNames(){
+  return currentLang === 'es' ? DAY_NAMES : DAY_NAMES_EN;
+}
+function dishName(d){ return currentLang === 'en' && d.name_en ? d.name_en : d.name; }
+function dishTeaser(d){ return currentLang === 'en' && d.teaser_en ? d.teaser_en : d.teaser; }
+function dishDesc(d){ return currentLang === 'en' && d.desc_en ? d.desc_en : d.desc; }
+function dishIncludes(d, isCombo){
+  const base = (currentLang === 'en' && d.includes_en) ? d.includes_en : d.includes;
+  const extras = (currentLang === 'en' && d.comboExtras_en) ? d.comboExtras_en : (d.comboExtras || []);
+  return isCombo ? base.concat(extras) : base;
+}
+function dishPortion(d){ return currentLang === 'en' && d.portion_en ? d.portion_en : d.portion; }
+function pupusaName(o){ return currentLang === 'en' && o.name_en ? o.name_en : o.name; }
+function pupusaDesc(o){ return currentLang === 'en' && o.desc_en ? o.desc_en : o.desc; }
+function deliveryLabel(o){ return currentLang === 'en' && o.label_en ? o.label_en : o.label; }
+
+/* ============================================================
+   SISTEMA DE IDIOMA
+   ============================================================ */
+function setLanguage(lang){
+  currentLang = lang;
+  localStorage.setItem('preferredLang', lang);
+  document.documentElement.lang = lang;
+  
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const translation = t(key);
+    if(translation) el.innerHTML = translation;
+  });
+  
+  renderFilters();
+  renderDaySelector();
+  renderMenu();
+  updateCartUI();
+}
+
+function initLanguage(){
+  const saved = localStorage.getItem('preferredLang');
+  const browserLang = (navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
+  const initial = saved || browserLang;
+  setLanguage(initial);
+}
 
 /* ============================================================
    RENDER DE FILTROS
    ============================================================ */
 function renderFilters(){
   const el = document.getElementById('filters');
+  const FILTER_KEYS = {
+    'todos': 'filter.all', 'pupusas': 'filter.pupusas', 'platillos': 'filter.platillos',
+    'jugos': 'filter.jugos', 'sodas': 'filter.sodas', 'tortillas': 'filter.tortillas'
+  };
   el.innerHTML = CATS.map(c =>
-    '<button class="filter-chip ' + (c.id===activeFilter?'active':'') + '" onclick="setFilter(\''+c.id+'\')">' + c.label + '</button>'
+    '<button class="filter-chip ' + (c.id===activeFilter?'active':'') + '" onclick="setFilter(\''+c.id+'\')">' + t(FILTER_KEYS[c.id]) + '</button>'
   ).join('');
 }
 function setFilter(id){ activeFilter = id; renderFilters(); renderMenu(); }
+
+/* ============================================================
+   SELECTOR DE DÍAS
+   ============================================================ */
+function renderDaySelector(){
+  const el = document.getElementById('day-selector');
+  if(!el) return;
+  const today = new Date().getDay();
+  const order = [1,2,3,4,5,6,0];
+  const names = dayNames();
+  
+  el.innerHTML = order.map(day => {
+    const isToday = day === today;
+    const isActive = day === selectedDay;
+    return `<button class="day-chip ${isActive?'active':''} ${isToday?'today':''}" 
+                    onclick="setDay(${day})">${names[day]}</button>`;
+  }).join('');
+}
 
 /* ============================================================
    RENDER DEL MENÚ
    ============================================================ */
 function renderMenu(){
   const el = document.getElementById('menu-grid');
-  const list = activeFilter === 'todos' ? dishes : dishes.filter(d => d.cat === activeFilter);
+  
+  const availableToday = dishes.filter(d => {
+    if (d.fixed) return true;
+    return WEEKLY_MENU[selectedDay]?.includes(d.id);
+  });
+  
+  const list = activeFilter === 'todos' 
+    ? availableToday 
+    : availableToday.filter(d => d.cat === activeFilter);
+  
   el.innerHTML = list.map((d, i) => {
     let extraClass = '';
     let badge = '';
-    if(d.featured === 'lg'){ extraClass = 'featured-lg'; badge = '<span class="highlight-badge">★ Recomendado</span>'; }
-    if(d.featured === 'tall'){ extraClass = 'featured-tall'; badge = '<span class="highlight-badge">★ Popular</span>'; }
+    if(d.featured === 'lg'){ extraClass = 'featured-lg'; badge = '<span class="highlight-badge">' + t('badge.recommended') + '</span>'; }
+    if(d.featured === 'tall'){ extraClass = 'featured-tall'; badge = '<span class="highlight-badge">' + t('badge.popular') + '</span>'; }
     const desde = d.isPupusas
-      ? `Desde ${money(Math.min(...d.pupusaOptions.map(p => p.priceSingle)))}`
-      : `Desde ${money(d.priceSingle)}`;
+      ? `${t('dish.from')} ${money(Math.min(...d.pupusaOptions.map(p => p.priceSingle)))}`
+      : `${t('dish.from')} ${money(d.priceSingle)}`;
     const catIcon = ICONS[d.cat] || '';
-    const catLabel = CATS.find(c=>c.id===d.cat)?.label || '';
+    const catLabel = t(`filter.${d.cat}`);
+    const dName = dishName(d);
+    const dTeaser = dishTeaser(d);
     return `
       <div class="dish-card ${extraClass} reveal reveal-delay-${(i % 4)}" onclick="openModal(${d.id})">
         ${badge}
-        <img class="dish-img" src="${d.img}" alt="${d.name}" loading="lazy">
+        <div class="dish-img-wrap">
+          <img class="dish-img" src="${d.img}" alt="${dName}" loading="lazy">
+          <button class="share-btn" onclick="event.stopPropagation(); shareDish(${d.id})" aria-label="Share ${dName}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>
+            </svg>
+          </button>
+        </div>
         <div class="dish-body">
           <div class="dish-top">
             <span class="cat-badge">${catIcon} ${catLabel}</span>
           </div>
           <div>
-            <h3>${d.name}</h3>
-            <p class="dish-teaser">${d.teaser}</p>
+            <h3>${dName}</h3>
+            <p class="dish-teaser">${dTeaser}</p>
           </div>
           <div class="dish-bottom">
             <span class="price-tag">${desde}</span>
-            <button class="see-more" onclick="event.stopPropagation(); openModal(${d.id})">Ver opciones</button>
+            <button class="see-more" onclick="event.stopPropagation(); openModal(${d.id})">${t('dish.seeOptions')}</button>
           </div>
         </div>
       </div>
     `;
   }).join('');
+  
   document.querySelectorAll('#menu-grid .reveal').forEach(el => revealObserver.observe(el));
+  updateMenuSubtitle();
+}
+
+function updateMenuSubtitle(){
+  const sub = document.getElementById('menu-subtitle');
+  if(!sub) return;
+  const today = new Date().getDay();
+  const isToday = selectedDay === today;
+  const names = dayNames();
+  const label = isToday ? t('menu.subtitleToday') : names[selectedDay].toLowerCase();
+  const platoFuerteId = WEEKLY_MENU[selectedDay]?.[0];
+  const platoFuerte = dishes.find(d => d.id === platoFuerteId);
+  const nombrePlato = platoFuerte ? dishName(platoFuerte) : '';
+  sub.innerHTML = `${t('menu.subtitlePrefix')} <strong>${label} (${names[selectedDay]})</strong>. ${t('menu.subtitleStrong')} <strong>${nombrePlato}</strong>.`;
+}
+
+function setDay(day){
+  selectedDay = day;
+  renderMenu();
+  renderDaySelector();
+}
+
+/* ============================================================
+   COMPARTIR
+   ============================================================ */
+function shareDish(id){
+  const d = dishes.find(x => x.id === id);
+  if(!d) return;
+  const url = window.location.origin + window.location.pathname + '#plato-' + d.id;
+  const dName = dishName(d);
+  const dTeaser = dishTeaser(d);
+  const texto = currentLang === 'en'
+    ? `Check out this dish from Karla Sabor De El Pulgarcito: ${dName} — ${dTeaser}`
+    : `Mirá este plato de Karla Sabor De El Pulgarcito: ${dName} — ${dTeaser}`;
+  
+  if (navigator.share) {
+    navigator.share({ title: dName + ' — Karla Sabor De El Pulgarcito', text: texto, url: url }).catch(() => {});
+  } else {
+    const fullText = texto + '\n' + url;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(fullText).then(() => showToast(t('toast.copied'))).catch(() => showToast(t('toast.copyError')));
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = fullText;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast(t('toast.copied'));
+    }
+  }
 }
 
 /* ============================================================
@@ -1319,6 +1877,7 @@ function renderMenu(){
    ============================================================ */
 function openModal(id){
   modalOption = 'single';
+  modalQty = 1;
   const d = dishes.find(x => x.id === id);
   if (d && d.isPupusas) selectedPupusa = d.pupusaOptions[0];
   renderModal(id);
@@ -1328,125 +1887,139 @@ function openModal(id){
 function renderModal(id){
   const d = dishes.find(x => x.id === id);
   const modal = document.getElementById('modal');
+  const catLabel = t(`filter.${d.cat}`);
+  const dDesc = dishDesc(d);
+  const dPortion = dishPortion(d);
 
-  // Caso especial: PUPUSAS con selector individual
   if (d.isPupusas) {
     if (!selectedPupusa) selectedPupusa = d.pupusaOptions[0];
     const isCombo = modalOption === 'combo';
     const price = isCombo ? selectedPupusa.priceCombo : selectedPupusa.priceSingle;
+    const includes = dishIncludes(d, isCombo);
 
     modal.innerHTML = `
       <img class="modal-img" src="${d.img}" alt="${d.name}">
       <button class="modal-close" onclick="closeModal()">×</button>
       <div class="modal-body">
-        <span class="cat-badge">${ICONS[d.cat]} ${CATS.find(c=>c.id===d.cat).label}</span>
-        <h3>${d.name}</h3>
-        <p class="dish-desc">${d.desc}</p>
-
-        <div class="includes-title">Elegí tu pupusa</div>
+        <span class="cat-badge">${ICONS[d.cat]} ${catLabel}</span>
+        <h3>${dishName(d)}</h3>
+        <p class="dish-desc">${dDesc}</p>
+        <div class="includes-title">${t('modal.choosePupusa')}</div>
         <div class="pupusa-selector">
           ${d.pupusaOptions.map(opt => `
-            <div class="pupusa-option ${selectedPupusa.id === opt.id ? 'active' : ''}"
-                 onclick="selectPupusa('${opt.id}', ${id})">
-              <div class="pupusa-opt-name">${opt.name}</div>
-              <div class="pupusa-opt-desc">${opt.desc}</div>
+            <div class="pupusa-option ${selectedPupusa.id === opt.id ? 'active' : ''}" onclick="selectPupusa('${opt.id}', ${id})">
+              <div class="pupusa-opt-name">${pupusaName(opt)}</div>
+              <div class="pupusa-opt-desc">${pupusaDesc(opt)}</div>
               <div class="pupusa-opt-price">${money(opt.priceSingle)}</div>
             </div>
           `).join('')}
         </div>
-
         <div class="option-toggle">
           <div class="option-card ${!isCombo?'active':''}" onclick="setModalOption(${id},'single')">
-            <div class="opt-title">Porción solitaria</div>
+            <div class="opt-title">${t('modal.single')}</div>
             <div class="opt-price">${money(selectedPupusa.priceSingle)}</div>
-            <div class="opt-desc">1 pupusa individual</div>
+            <div class="opt-desc">${t('modal.pupusaSingle')}</div>
           </div>
           <div class="option-card ${isCombo?'active':''}" onclick="setModalOption(${id},'combo')">
-            <div class="opt-title">Combo</div>
+            <div class="opt-title">${t('modal.combo')}</div>
             <div class="opt-price">${money(selectedPupusa.priceCombo)}</div>
-            <div class="opt-desc">Pupusa + bebida</div>
+            <div class="opt-desc">${t('modal.pupusaCombo')}</div>
           </div>
         </div>
-
         <div class="modal-meta">
-          <div><strong>${d.portion}</strong>Cantidad</div>
-          <div><strong>${money(price)}</strong>Precio</div>
+          <div><strong>${dPortion}</strong>${t('modal.quantity')}</div>
+          <div><strong>${money(price)}</strong>${t('modal.price')}</div>
         </div>
-
-        <div class="includes-title">Qué incluye</div>
+        <div class="includes-title">${t('modal.includes')}</div>
         <ul class="includes-list">
-          ${(isCombo ? d.includes.concat(d.comboExtras) : d.includes).map(i => `<li>${CHECK}${i}</li>`).join('')}
+          ${includes.map(i => `<li>${CHECK}${i}</li>`).join('')}
         </ul>
-
+        <div class="includes-title">${t('modal.quantity')}</div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+          <button type="button" class="btn btn-ghost btn-small" onclick="changeQty(-1)" style="padding:8px 14px;">−</button>
+          <span id="modal-qty" style="font-family:'Fraunces',serif; font-size:22px; font-weight:600; min-width:40px; text-align:center;">${modalQty}</span>
+          <button type="button" class="btn btn-ghost btn-small" onclick="changeQty(1)" style="padding:8px 14px;">+</button>
+        </div>
         <div class="modal-actions">
-          <button class="btn btn-primary" onclick="addPupusaToCart(${id})">Agregar a mi pedido</button>
-          <button class="btn btn-ghost" onclick="closeModal()">Seguir viendo</button>
+          <button class="btn btn-primary" onclick="addPupusaToCart(${id})">${t('modal.add')}</button>
+          <button class="btn btn-ghost" onclick="closeModal()">${t('modal.keep')}</button>
         </div>
       </div>
     `;
     return;
   }
 
-  // Caso especial: BEBIDAS (precio único, sin combo real)
   if (d.cat === 'jugos' || d.cat === 'sodas' || d.cat === 'tortillas') {
+    const includes = (currentLang === 'en' && d.includes_en) ? d.includes_en : d.includes;
     modal.innerHTML = `
       <img class="modal-img" src="${d.img}" alt="${d.name}">
       <button class="modal-close" onclick="closeModal()">×</button>
       <div class="modal-body">
-        <span class="cat-badge">${ICONS[d.cat] || ''} ${CATS.find(c=>c.id===d.cat).label}</span>
-        <h3>${d.name}</h3>
-        <p class="dish-desc">${d.desc}</p>
+        <span class="cat-badge">${ICONS[d.cat] || ''} ${catLabel}</span>
+        <h3>${dishName(d)}</h3>
+        <p class="dish-desc">${dDesc}</p>
         <div class="modal-meta">
-          <div><strong>${d.portion}</strong>Cantidad</div>
-          <div><strong>${money(d.priceSingle)}</strong>Precio</div>
+          <div><strong>${dPortion}</strong>${t('modal.quantity')}</div>
+          <div><strong>${money(d.priceSingle)}</strong>${t('modal.price')}</div>
         </div>
-        <div class="includes-title">Qué incluye</div>
+        <div class="includes-title">${t('modal.includes')}</div>
         <ul class="includes-list">
-          ${d.includes.map(i => `<li>${CHECK}${i}</li>`).join('')}
+          ${includes.map(i => `<li>${CHECK}${i}</li>`).join('')}
         </ul>
+        <div class="includes-title">${t('modal.quantity')}</div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+          <button type="button" class="btn btn-ghost btn-small" onclick="changeQty(-1)" style="padding:8px 14px;">−</button>
+          <span id="modal-qty" style="font-family:'Fraunces',serif; font-size:22px; font-weight:600; min-width:40px; text-align:center;">${modalQty}</span>
+          <button type="button" class="btn btn-ghost btn-small" onclick="changeQty(1)" style="padding:8px 14px;">+</button>
+        </div>
         <div class="modal-actions">
-          <button class="btn btn-primary" onclick="addBebidaToCart(${id})">Agregar a mi pedido</button>
-          <button class="btn btn-ghost" onclick="closeModal()">Seguir viendo</button>
+          <button class="btn btn-primary" onclick="addBebidaToCart(${id})">${t('modal.add')}</button>
+          <button class="btn btn-ghost" onclick="closeModal()">${t('modal.keep')}</button>
         </div>
       </div>
     `;
     return;
   }
 
-  // Caso normal: PLATILLOS principales
   const isCombo = modalOption === 'combo';
   const price = isCombo ? d.priceCombo : d.priceSingle;
-  const items = isCombo ? d.includes.concat(d.comboExtras) : d.includes;
+  const includes = dishIncludes(d, isCombo);
   modal.innerHTML = `
     <img class="modal-img" src="${d.img}" alt="${d.name}">
     <button class="modal-close" onclick="closeModal()">×</button>
     <div class="modal-body">
-      <span class="cat-badge">${ICONS[d.cat]} ${CATS.find(c=>c.id===d.cat).label}</span>
-      <h3>${d.name}</h3>
-      <p class="dish-desc">${d.desc}</p>
+      <span class="cat-badge">${ICONS[d.cat]} ${catLabel}</span>
+      <h3>${dishName(d)}</h3>
+      <p class="dish-desc">${dDesc}</p>
       <div class="option-toggle">
         <div class="option-card ${!isCombo?'active':''}" onclick="setModalOption(${id},'single')">
-          <div class="opt-title">Porción solitaria</div>
+          <div class="opt-title">${t('modal.single')}</div>
           <div class="opt-price">${money(d.priceSingle)}</div>
-          <div class="opt-desc">Solo el plato principal</div>
+          <div class="opt-desc">${t('modal.singleDesc')}</div>
         </div>
         <div class="option-card ${isCombo?'active':''}" onclick="setModalOption(${id},'combo')">
-          <div class="opt-title">Combo</div>
+          <div class="opt-title">${t('modal.combo')}</div>
           <div class="opt-price">${money(d.priceCombo)}</div>
-          <div class="opt-desc">Suma acompañamiento y bebida</div>
+          <div class="opt-desc">${t('modal.comboDesc')}</div>
         </div>
       </div>
       <div class="modal-meta">
-        <div><strong>${d.portion}</strong>Porción</div>
-        <div><strong>${money(price)}</strong>Precio</div>
+        <div><strong>${dPortion}</strong>${t('modal.portion')}</div>
+        <div><strong>${money(price)}</strong>${t('modal.price')}</div>
       </div>
-      <div class="includes-title">Qué incluye</div>
+      <div class="includes-title">${t('modal.includes')}</div>
       <ul class="includes-list">
-        ${items.map(i => `<li>${CHECK}${i}</li>`).join('')}
+        ${includes.map(i => `<li>${CHECK}${i}</li>`).join('')}
       </ul>
+      <div class="includes-title">${t('modal.quantity')}</div>
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+        <button type="button" class="btn btn-ghost btn-small" onclick="changeQty(-1)" style="padding:8px 14px;">−</button>
+        <span id="modal-qty" style="font-family:'Fraunces',serif; font-size:22px; font-weight:600; min-width:40px; text-align:center;">${modalQty}</span>
+        <button type="button" class="btn btn-ghost btn-small" onclick="changeQty(1)" style="padding:8px 14px;">+</button>
+      </div>
       <div class="modal-actions">
-        <button class="btn btn-primary" onclick="addToCart(${id})">Agregar a mi pedido</button>
-        <button class="btn btn-ghost" onclick="closeModal()">Seguir viendo</button>
+        <button class="btn btn-primary" onclick="addToCart(${id})">${t('modal.add')}</button>
+        <button class="btn btn-ghost" onclick="closeModal()">${t('modal.keep')}</button>
       </div>
     </div>
   `;
@@ -1466,43 +2039,57 @@ function closeModal(){ document.getElementById('overlay').classList.remove('acti
 function addToCart(id){
   const d = dishes.find(x => x.id === id);
   const isCombo = modalOption === 'combo';
-  cart.push({
-    name: d.name,
-    type: isCombo ? 'Combo' : 'Porción solitaria',
-    price: isCombo ? d.priceCombo : d.priceSingle
-  });
+  const nameToUse = dishName(d);
+  const typeLabel = isCombo ? t('modal.combo') : t('modal.single');
+  const extras = (currentLang === 'en' && d.comboExtras_en) ? d.comboExtras_en : (d.comboExtras || []);
+  for(let i = 0; i < modalQty; i++){
+    cart.push({
+      name: nameToUse,
+      type: typeLabel,
+      price: isCombo ? d.priceCombo : d.priceSingle,
+      desc: isCombo && extras.length ? extras.join(', ') : ''
+    });
+  }
   updateCartUI();
+  animateCart();
   closeModal();
-  showToast(d.name + ' se sumó a tu pedido');
+  showToast(nameToUse + ' ' + t('toast.added'));
 }
 
 function addPupusaToCart(dishId){
   const d = dishes.find(x => x.id === dishId);
   const isCombo = modalOption === 'combo';
-  cart.push({
-    name: selectedPupusa.name,
-    type: isCombo ? 'Combo' : 'Porción solitaria',
-    price: isCombo ? selectedPupusa.priceCombo : selectedPupusa.priceSingle
-  });
+  const nameToUse = pupusaName(selectedPupusa);
+  const typeLabel = isCombo ? t('modal.combo') : t('modal.single');
+  for(let i = 0; i < modalQty; i++){
+    cart.push({
+      name: nameToUse,
+      type: typeLabel,
+      price: isCombo ? selectedPupusa.priceCombo : selectedPupusa.priceSingle,
+      desc: isCombo ? t('modal.pupusaCombo') : ''
+    });
+  }
   updateCartUI();
+  animateCart();
   closeModal();
-  showToast(selectedPupusa.name + ' se sumó a tu pedido');
+  showToast(nameToUse + ' ' + t('toast.added'));
 }
 
 function addBebidaToCart(id){
   const d = dishes.find(x => x.id === id);
-  cart.push({
-    name: d.name,
-    type: 'Bebida',
-    price: d.priceSingle
-  });
+  const nameToUse = dishName(d);
+  for(let i = 0; i < modalQty; i++){
+    cart.push({ name: nameToUse, type: currentLang === 'en' ? 'Drink' : 'Bebida', price: d.priceSingle, desc: '' });
+  }
   updateCartUI();
+  animateCart();
   closeModal();
-  showToast(d.name + ' se sumó a tu pedido');
+  showToast(nameToUse + ' ' + t('toast.added'));
 }
 
-function removeFromCart(index){
-  cart.splice(index,1);
+function removeFromCart(name, type){
+  const idx = cart.findIndex(it => it.name === name && it.type === type);
+  if(idx > -1) cart.splice(idx, 1);
   updateCartUI();
 }
 
@@ -1512,24 +2099,50 @@ function setCustomTip(){ customTipActive = true; updateCartUI(); }
 function onCustomTipInput(val){ customTipValue = val; updateCartUI(); }
 
 /* ============================================================
+   ANIMACIÓN DEL CARRITO
+   ============================================================ */
+function animateCart(){
+  const cartBtn = document.querySelector('.cart-btn');
+  const badge = document.getElementById('cart-count');
+  if(!cartBtn || !badge) return;
+  cartBtn.classList.remove('bounce');
+  badge.classList.remove('pop');
+  void cartBtn.offsetWidth;
+  cartBtn.classList.add('bounce');
+  badge.classList.add('pop');
+  setTimeout(() => { cartBtn.classList.remove('bounce'); badge.classList.remove('pop'); }, 700);
+}
+
+/* ============================================================
    CARRITO — UI
    ============================================================ */
 function updateCartUI(){
   document.getElementById('cart-count').textContent = cart.length;
+  const itemsCount = document.getElementById('cart-items-count');
+  if(itemsCount) itemsCount.textContent = '(' + cart.length + ' ' + t('cart.items') + ')';
+  
   const lines = document.getElementById('cart-lines');
   if(cart.length === 0){
-    lines.innerHTML = '<p class="cart-empty">Todavía no agregaste ningún plato. Mirá el menú y elegí porción solitaria o combo.</p>';
+    lines.innerHTML = '<p class="cart-empty">' + t('cart.empty') + '</p>';
     document.getElementById('cart-checkout').innerHTML = '';
     return;
   }
-  lines.innerHTML = cart.map((it,i) => `
+  
+  const grouped = cart.reduce((acc, it) => {
+    const key = it.name + '|' + it.type;
+    if(!acc[key]) acc[key] = { ...it, qty: 1 };
+    else acc[key].qty++;
+    return acc;
+  }, {});
+  
+  lines.innerHTML = Object.values(grouped).map((it) => `
     <div class="cart-line">
       <div>
-        <div class="line-name">${it.name}</div>
-        <div class="line-type">${it.type}</div>
-        <button class="remove" onclick="removeFromCart(${i})">Quitar</button>
+        <div class="line-name">${it.name} ${it.qty > 1 ? 'x' + it.qty : ''}</div>
+        <div class="line-type">${it.type}${it.desc ? ' — ' + it.desc : ''}</div>
+        <button class="remove" onclick="removeFromCart('${it.name.replace(/'/g, "\\'")}', '${it.type.replace(/'/g, "\\'")}')">${t('cart.remove')}</button>
       </div>
-      <div>${money(it.price)}</div>
+      <div>${money(it.price * it.qty)}</div>
     </div>
   `).join('');
   renderCheckout();
@@ -1543,90 +2156,102 @@ function renderCheckout(){
   const tipAmount = customTipActive ? (parseFloat(customTipValue) || 0) : subtotal * (selectedTip/100);
   const total = subtotal + deliveryOpt.cost + tipAmount;
 
-  // ============================================================
-  // DATOS DEL CLIENTE — usamos customerData para que NO se borren
-  // al re-renderizar (bug arreglado). Ya NO pedimos dirección:
-  // se coordina por WhatsApp.
-  // ============================================================
   const customerHtml = `
-    <div class="checkout-label">Tus datos</div>
-    <input type="text" id="cust-name" class="tip-custom" placeholder="Nombre completo"
+    <div class="checkout-label">${t('cart.yourData')}</div>
+    <input type="text" id="cust-name" class="tip-custom" placeholder="${t('cart.namePlaceholder')}"
            value="${customerData.name}"
            oninput="customerData.name = this.value" required>
-    <input type="tel" id="cust-phone" class="tip-custom" placeholder="Teléfono"
+    <input type="tel" id="cust-phone" class="tip-custom" placeholder="${t('cart.phonePlaceholder')}"
            value="${customerData.phone}"
-           oninput="customerData.phone = this.value" style="margin-top:8px;" required>
+           oninput="customerData.phone = this.value" 
+           pattern="[0-9\\s\\-\\(\\)\\+]{7,15}"
+           style="margin-top:8px;" required>
+    <input type="text" id="cust-notes" class="tip-custom" placeholder="${t('cart.notesPlaceholder')}"
+           value="${customerData.notes || ''}"
+           oninput="customerData.notes = this.value" style="margin-top:8px;">
   `;
 
   const deliveryHtml = DELIVERY_OPTIONS.map(o => `
     <div class="radio-opt ${selectedDelivery===o.id?'active':''}" onclick="setDelivery('${o.id}')">
-      <span>${o.label}</span><span class="cost">${o.cost>0?('+'+money(o.cost)):'Sin costo'}</span>
+      <span>${deliveryLabel(o)}</span><span class="cost">${o.cost>0?('+'+money(o.cost)):t('cart.free')}</span>
     </div>
   `).join('');
-  const tipHtml = TIP_OPTIONS.map(t => `
-    <button type="button" class="tip-chip ${!customTipActive && selectedTip===t ? 'active':''}" onclick="setTip(${t})">${t===0?'Sin propina':t+'%'}</button>
-  `).join('') + `<button type="button" class="tip-chip ${customTipActive?'active':''}" onclick="setCustomTip()">Otro monto</button>`;
+  const tipHtml = TIP_OPTIONS.map(tip => `
+    <button type="button" class="tip-chip ${!customTipActive && selectedTip===tip ? 'active':''}" onclick="setTip(${tip})">${tip===0?t('cart.tipNone'):tip+'%'}</button>
+  `).join('') + `<button type="button" class="tip-chip ${customTipActive?'active':''}" onclick="setCustomTip()">${t('cart.tipOther')}</button>`;
 
   checkout.innerHTML = `
     <div class="checkout-block">
       ${customerHtml}
-      <div class="checkout-label">Entrega</div>
+      <div class="checkout-label">${t('cart.deliveryLabel')}</div>
       <div class="radio-row">${deliveryHtml}</div>
-      <p style="font-size:12px; color:var(--ink-soft); margin-top:8px; font-style:italic;">La dirección exacta la coordinamos por WhatsApp.</p>
-      <div class="checkout-label">Propina (opcional)</div>
+      <p style="font-size:12px; color:var(--ink-soft); margin-top:8px; font-style:italic;">${t('cart.deliveryNote')}<br>${t('cart.zoneNote')}</p>
+      <div class="checkout-label">${t('cart.tipLabel')}</div>
       <div class="chip-row">${tipHtml}</div>
-      ${customTipActive ? `<input type="number" min="0" step="0.5" class="tip-custom" placeholder="Monto en USD" value="${customTipValue}" oninput="onCustomTipInput(this.value)">` : ''}
-      <div class="cart-subline" style="margin-top:18px;"><span>Subtotal</span><span>${money(subtotal)}</span></div>
-      <div class="cart-subline"><span>Envío</span><span>${deliveryOpt.cost>0?money(deliveryOpt.cost):'Sin costo'}</span></div>
-      <div class="cart-subline"><span>Propina</span><span>${money(tipAmount)}</span></div>
-      <div class="cart-total"><span>Total</span><span>${money(total)}</span></div>
-      <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="enviarPedido()">
-        Enviar Pedido
+      ${customTipActive ? `<input type="number" min="0" step="0.5" class="tip-custom" placeholder="${t('cart.tipCustom')}" value="${customTipValue}" oninput="onCustomTipInput(this.value)">` : ''}
+      <div class="cart-subline" style="margin-top:18px;"><span>${t('cart.subtotal')}</span><span>${money(subtotal)}</span></div>
+      <div class="cart-subline"><span>${t('cart.shipping')}</span><span>${deliveryOpt.cost>0?money(deliveryOpt.cost):t('cart.free')}</span></div>
+      <div class="cart-subline"><span>${t('cart.tip')}</span><span>${money(tipAmount)}</span></div>
+      <div class="cart-total"><span>${t('cart.total')}</span><span>${money(total)}</span></div>
+      <button class="btn btn-primary" id="send-btn" style="width:100%; justify-content:center;" onclick="enviarPedido()">
+        ${t('cart.send')}
       </button>
     </div>
   `;
 }
 
 /* ============================================================
-   ENVIAR PEDIDO — WhatsApp (lee de customerData, no del DOM)
+   ENVIAR PEDIDO
    ============================================================ */
 function enviarPedido(){
-  // Leemos de customerData (persistente) en lugar del DOM (se borra)
+  const btn = document.getElementById('send-btn');
   const name = customerData.name.trim();
   const phone = customerData.phone.trim();
+  const notes = (customerData.notes || '').trim();
 
-  if (!name || !phone) {
-    showToast('Por favor completá nombre y teléfono');
-    return;
-  }
+  if (!name || !phone) { showToast(t('toast.missing')); return; }
+  if (!/^[\d\s\-\(\)\+]{7,15}$/.test(phone)) { showToast(t('toast.phoneError')); return; }
+
+  if(btn){ btn.disabled = true; btn.textContent = t('cart.sending'); }
 
   const subtotal = cart.reduce((s,it) => s + it.price, 0);
   const deliveryOpt = DELIVERY_OPTIONS.find(o => o.id === selectedDelivery);
   const tipAmount = customTipActive ? (parseFloat(customTipValue) || 0) : subtotal * (selectedTip/100);
   const total = subtotal + deliveryOpt.cost + tipAmount;
 
-  const resumen = cart.map(it => `• ${it.name} (${it.type}) — ${money(it.price)}`).join('\n');
+  const grouped = cart.reduce((acc, it) => {
+    const key = it.name + '|' + it.type;
+    if(!acc[key]) acc[key] = { ...it, qty: 1 };
+    else acc[key].qty++;
+    return acc;
+  }, {});
+  const resumen = Object.values(grouped).map(it => `• ${it.name} (${it.type}) x${it.qty} — ${money(it.price * it.qty)}`).join('\n');
+
+  const names = dayNames();
+  const diaLabel = names[new Date().getDay()];
 
   const waMsg = encodeURIComponent(
-    `¡Hola Karla! Quiero hacer este pedido:\n\n` +
+    `${t('wa.greeting')}\n\n` +
     `${resumen}\n\n` +
-    `Subtotal: ${money(subtotal)}\n` +
-    `Envío: ${deliveryOpt.cost > 0 ? money(deliveryOpt.cost) : 'Sin costo'}\n` +
-    `Propina: ${money(tipAmount)}\n` +
-    `TOTAL: ${money(total)}\n\n` +
-    `Cliente: ${name}\n` +
-    `Teléfono: ${phone}\n` +
-    `Entrega: ${deliveryOpt.label}\n\n` +
-    `(La dirección exacta la coordinamos por acá 🙌)`
+    `${t('cart.subtotal')}: ${money(subtotal)}\n` +
+    `${t('cart.shipping')}: ${deliveryOpt.cost > 0 ? money(deliveryOpt.cost) : t('cart.free')}\n` +
+    `${t('cart.tip')}: ${money(tipAmount)}\n` +
+    `${t('cart.total')}: ${money(total)}\n\n` +
+    `${t('wa.client')}: ${name}\n` +
+    `${t('wa.phone')}: ${phone}\n` +
+    `${t('wa.delivery')}: ${deliveryLabel(deliveryOpt)}\n` +
+    `${t('wa.notes')}: ${notes || t('wa.none')}\n` +
+    `${t('wa.forDay')}: ${diaLabel}\n\n` +
+    `${t('wa.coord')}`
   );
   window.open(`https://wa.me/18186443826?text=${waMsg}`, '_blank');
 
-  showToast('¡Pedido enviado por WhatsApp! 📱');
+  showToast(t('toast.sent'));
 
-  // Limpiar carrito Y datos del cliente
   cart = [];
   customerData.name = '';
   customerData.phone = '';
+  customerData.notes = '';
   updateCartUI();
   setTimeout(() => toggleCart(false), 2500);
 }
@@ -1634,14 +2259,21 @@ function enviarPedido(){
 /* ============================================================
    CARRITO — TOGGLE Y TOAST
    ============================================================ */
-function toggleCart(open){
-  document.getElementById('cart-drawer').classList.toggle('active', open);
-}
+function toggleCart(open){ document.getElementById('cart-drawer').classList.toggle('active', open); }
 function showToast(text){
-  const t = document.getElementById('toast');
-  t.textContent = text;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
+  const el = document.getElementById('toast');
+  el.textContent = text;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+/* ============================================================
+   CANTIDAD DEL MODAL
+   ============================================================ */
+function changeQty(delta){
+  modalQty = Math.max(1, modalQty + delta);
+  const el = document.getElementById('modal-qty');
+  if(el) el.textContent = modalQty;
 }
 
 /* ============================================================
@@ -1659,11 +2291,144 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ============================================================
+   CERRAR CON ESC
+   ============================================================ */
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') { closeModal(); toggleCart(false); }
+});
+
+/* ============================================================
+   BOTÓN VOLVER ARRIBA
+   ============================================================ */
+function scrollToTop(){ window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+const backToTopBtn = document.getElementById('back-to-top');
+if(backToTopBtn){
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 400) backToTopBtn.classList.add('show');
+    else backToTopBtn.classList.remove('show');
+  });
+}
+
+/* ============================================================
+   BURBUJAS INTERACTIVAS
+   ============================================================ */
+const BUBBLE_SHAPES = [
+  `<svg viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="32" rx="24" ry="20" fill="#D79B3B"/><ellipse cx="30" cy="30" rx="22" ry="18" fill="#E8B85A"/><circle cx="22" cy="28" r="2.5" fill="#8B3A1F" opacity="0.5"/><circle cx="36" cy="32" r="2" fill="#8B3A1F" opacity="0.5"/><circle cx="28" cy="38" r="1.5" fill="#8B3A1F" opacity="0.5"/></svg>`,
+  `<svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="34" r="20" fill="#B14B2A"/><circle cx="30" cy="34" r="20" fill="#8B3A1F" opacity="0.2"/><path d="M30 16 Q26 12 22 14 Q28 18 30 16 Q32 18 38 14 Q34 12 30 16Z" fill="#5F6A3C"/><path d="M30 14 Q30 10 32 8" stroke="#5F6A3C" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+  `<svg viewBox="0 0 60 60" fill="none"><path d="M20 30 Q30 22 42 30 Q42 44 30 46 Q20 44 20 30Z" fill="#B14B2A"/><path d="M22 28 Q26 24 28 26" stroke="#5F6A3C" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M42 30 Q48 32 50 38" stroke="#8B3A1F" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/></svg>`,
+  `<svg viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="30" rx="16" ry="24" transform="rotate(-25 30 30)" fill="#5F6A3C"/><ellipse cx="30" cy="30" rx="14" ry="22" transform="rotate(-25 30 30)" fill="#7B8A4E" opacity="0.7"/><path d="M22 14 L38 46" stroke="#3D4A28" stroke-width="1.2" opacity="0.6"/></svg>`,
+  `<svg viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="32" rx="22" ry="18" fill="#C8E64B"/><ellipse cx="30" cy="30" rx="20" ry="16" fill="#DCEB6E"/><circle cx="22" cy="30" r="1.5" fill="#5F6A3C" opacity="0.4"/><circle cx="34" cy="28" r="1.5" fill="#5F6A3C" opacity="0.4"/></svg>`,
+  `<svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="34" r="20" fill="#8B3A1F"/><circle cx="30" cy="34" r="18" fill="#B14B2A" opacity="0.6"/><path d="M30 16 Q28 10 30 6" stroke="#5F6A3C" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M28 20 Q30 30 28 48" stroke="#E8B85A" stroke-width="0.8" fill="none" opacity="0.4"/></svg>`
+];
+
+const BUBBLE_COLORS = ['#D79B3B', '#B14B2A', '#5F6A3C', '#C8E64B', '#8B3A1F', '#E8B85A'];
+
+function initBubbles(){
+  const zone = document.getElementById('bubble-zone');
+  if(!zone) return;
+  zone.innerHTML = '';
+  
+  const isMobile = window.innerWidth < 860;
+  const count = isMobile ? 4 : 7;
+  
+  const positions = isMobile
+    ? [
+        {x: '5%',  y: '10%', size: 44},
+        {x: '30%', y: '20%', size: 50},
+        {x: '60%', y: '5%',  size: 40},
+        {x: '80%', y: '25%', size: 46}
+      ]
+    : [
+        {x: '5%',  y: '8%',  size: 52},
+        {x: '22%', y: '15%', size: 46},
+        {x: '42%', y: '0%',  size: 58},
+        {x: '62%', y: '18%', size: 50},
+        {x: '82%', y: '5%',  size: 44},
+        {x: '12%', y: '58%', size: 48},
+        {x: '50%', y: '62%', size: 54}
+      ];
+  
+  positions.slice(0, count).forEach((pos, i) => {
+    const shape = BUBBLE_SHAPES[i % BUBBLE_SHAPES.length];
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.style.left = pos.x;
+    bubble.style.top = pos.y;
+    bubble.style.width = pos.size + 'px';
+    bubble.style.height = pos.size + 'px';
+    bubble.style.animationDelay = (i * 0.4) + 's';
+    bubble.style.animationDuration = (5 + Math.random() * 3) + 's';
+    bubble.innerHTML = shape;
+    bubble.addEventListener('click', () => burstBubble(bubble, pos));
+    zone.appendChild(bubble);
+  });
+}
+
+function burstBubble(bubble, pos){
+  if(bubble.classList.contains('burst')) return;
+  bubble.classList.add('burst');
+  
+  const rect = bubble.getBoundingClientRect();
+  const zone = bubble.parentElement;
+  const zoneRect = zone.getBoundingClientRect();
+  const centerX = rect.left - zoneRect.left + rect.width / 2;
+  const centerY = rect.top - zoneRect.top + rect.height / 2;
+  
+  const particleCount = 10;
+  for(let i = 0; i < particleCount; i++){
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.5;
+    const distance = 40 + Math.random() * 50;
+    const tx = Math.cos(angle) * distance;
+    const ty = Math.sin(angle) * distance;
+    
+    particle.style.left = centerX + 'px';
+    particle.style.top = centerY + 'px';
+    particle.style.background = BUBBLE_COLORS[Math.floor(Math.random() * BUBBLE_COLORS.length)];
+    particle.style.width = (6 + Math.random() * 6) + 'px';
+    particle.style.height = particle.style.width;
+    particle.style.setProperty('--tx', tx + 'px');
+    particle.style.setProperty('--ty', ty + 'px');
+    particle.style.animationDelay = (Math.random() * 0.1) + 's';
+    
+    zone.appendChild(particle);
+    setTimeout(() => particle.remove(), 1200);
+  }
+  
+  setTimeout(() => {
+    bubble.remove();
+    const shape = BUBBLE_SHAPES[Math.floor(Math.random() * BUBBLE_SHAPES.length)];
+    const newBubble = document.createElement('div');
+    newBubble.className = 'bubble';
+    newBubble.style.left = pos.x;
+    newBubble.style.top = pos.y;
+    newBubble.style.width = pos.size + 'px';
+    newBubble.style.height = pos.size + 'px';
+    newBubble.style.animationDelay = '0s';
+    newBubble.style.animationDuration = (5 + Math.random() * 3) + 's';
+    newBubble.innerHTML = shape;
+    newBubble.addEventListener('click', () => burstBubble(newBubble, pos));
+    zone.appendChild(newBubble);
+  }, 2500);
+}
+
+let lastBubbleWidth = window.innerWidth;
+window.addEventListener('resize', () => {
+  if((lastBubbleWidth < 860 && window.innerWidth >= 860) || 
+     (lastBubbleWidth >= 860 && window.innerWidth < 860)){
+    lastBubbleWidth = window.innerWidth;
+    initBubbles();
+  }
+});
+
+/* ============================================================
    INIT
    ============================================================ */
-renderFilters();
-renderMenu();
-updateCartUI();
+initLanguage();
+initBubbles();
 </script>
 
 </body>
