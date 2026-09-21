@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de Karla — Sabor De El Pulgarcito</title>
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDF0E3; --card:#F6F8EE; --ink:#1F2A18; --ink-soft:#4A5A38;
+    --brick:#B14B2A; --brick-dark:#8B3A1F; --olive:#5F6A3C;
+    --mustard:#D79B3B; --clay:#8C5A3C; --line:rgba(43,32,24,0.16);
+    --shadow: 6px 8px 0 rgba(140,90,60,0.14);
+    --green:#4A7C2E;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Karla',sans-serif; font-size:16px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; margin:0; line-height:1.1;}
+  button{touch-action:manipulation;font-family:'Karla',sans-serif;}
+  input,textarea,select{touch-action:manipulation;font-family:'Karla',sans-serif;}
+
+  .login-screen{
+    position:fixed; inset:0; background:var(--paper);
+    display:flex; align-items:center; justify-content:center; padding:20px; z-index:100;
+  }
+  .login-box{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:6px 30px 6px 30px; padding:40px 32px; max-width:400px; width:100%;
+    box-shadow:0 20px 50px -20px rgba(140,90,60,.4);
+    text-align:center;
+  }
+  .login-box h1{font-size:28px; color:var(--brick-dark); margin-bottom:8px;}
+  .login-box p{color:var(--ink-soft); font-size:14px; margin-bottom:24px;}
+  .login-box input{
+    width:100%; padding:13px 16px; border:1.5px solid var(--line);
+    border-radius:4px 12px 4px 12px; font-size:16px; background:var(--paper);
+    color:var(--ink); margin-bottom:12px;
+  }
+  .login-box input:focus{outline:none;border-color:var(--brick);}
+  .login-box button{
+    width:100%; padding:14px; background:var(--brick); color:var(--card);
+    border:none; border-radius:4px 12px 4px 12px; font-size:16px; font-weight:700;
+    cursor:pointer; transition:all .2s;
+  }
+  .login-box button:hover{background:var(--brick-dark); transform:translateY(-2px);}
+  .login-error{color:var(--brick); font-size:13px; margin-top:12px; min-height:18px;}
+
+  .dashboard{display:none; padding:20px; max-width:1200px; margin:0 auto;}
+  .dashboard.active{display:block;}
+  .header{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .header h1{font-size:24px; color:var(--brick-dark);}
+  .header .actions{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .logout-btn{
+    background:transparent; border:1.5px solid var(--line); color:var(--ink-soft);
+    padding:8px 14px; border-radius:4px 12px 4px 12px; font-size:13px; font-weight:700;
+    cursor:pointer; transition:all .2s;
+  }
+  .logout-btn:hover{border-color:var(--brick); color:var(--brick);}
+  .refresh-btn{
+    background:var(--olive); border:none; color:var(--card);
+    padding:8px 14px; border-radius:4px 12px 4px 12px; font-size:13px; font-weight:700;
+    cursor:pointer; transition:all .2s;
+  }
+  .refresh-btn:hover{background:#4A5530; transform:translateY(-1px);}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:24px;}
+  .stat-card{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:4px 16px 4px 16px; padding:16px;
+    box-shadow:var(--shadow);
+  }
+  .stat-card .stat-label{font-size:11.5px; font-weight:700; color:var(--clay); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;}
+  .stat-card .stat-value{font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--brick-dark);}
+
+  .filters{display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;}
+  .filter-btn{
+    background:transparent; border:1.5px solid var(--line); color:var(--ink-soft);
+    padding:8px 14px; border-radius:20px; font-size:13px; font-weight:700;
+    cursor:pointer; transition:all .2s;
+  }
+  .filter-btn:hover{border-color:var(--mustard); color:var(--ink);}
+  .filter-btn.active{background:var(--ink); color:var(--card); border-color:var(--ink);}
+
+  .orders-list{display:flex; flex-direction:column; gap:14px;}
+  .order-card{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:4px 20px 4px 20px; padding:18px;
+    box-shadow:var(--shadow); transition:all .2s;
+  }
+  .order-card:hover{transform:translateY(-2px); box-shadow:0 12px 30px -10px rgba(140,90,60,.35);}
+  .order-card.entregado{opacity:0.65;}
+  .order-card.cancelado{opacity:0.5; text-decoration:line-through;}
+
+  .order-header{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; flex-wrap:wrap;}
+  .order-name{font-family:'Fraunces',serif; font-size:19px; font-weight:600; color:var(--ink);}
+  .order-date{font-size:12px; color:var(--ink-soft);}
+  .order-state{
+    font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em;
+    padding:4px 10px; border-radius:20px;
+  }
+  .state-pendiente{background:var(--mustard); color:var(--ink);}
+  .state-entregado{background:var(--green); color:white;}
+  .state-cancelado{background:var(--brick); color:white;}
+
+  .order-info{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; font-size:13.5px;}
+  .order-info .label{color:var(--ink-soft); font-size:11.5px; text-transform:uppercase; letter-spacing:0.04em; font-weight:700;}
+  .order-info .value{color:var(--ink); font-weight:600;}
+
+  .order-items{background:var(--paper); border-radius:4px 12px 4px 12px; padding:12px; margin-bottom:12px;}
+  .order-items .item{display:flex; justify-content:space-between; padding:4px 0; font-size:13.5px;}
+  .order-items .item-name{font-weight:600;}
+
+  .order-total{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:10px; border-top:1px dashed var(--line);
+    font-family:'Fraunces',serif; font-size:18px; font-weight:600;
+  }
+  .order-total .total-amount{color:var(--brick-dark); font-size:22px;}
+
+  .order-notes{
+    background:rgba(215,155,59,0.15); border-left:3px solid var(--mustard);
+    padding:8px 12px; border-radius:4px; font-size:13px; margin-bottom:12px;
+    color:var(--ink-soft); font-style:italic;
+  }
+
+  .order-actions{display:flex; gap:8px; flex-wrap:wrap;}
+  .action-btn{
+    flex:1; min-width:120px; padding:10px 14px; border-radius:4px 12px 4px 12px;
+    font-size:13px; font-weight:700; cursor:pointer; transition:all .2s;
+    border:1.5px solid transparent;
+  }
+  .action-btn.whatsapp{background:#25D366; color:white;}
+  .action-btn.whatsapp:hover{background:#1EA855;}
+  .action-btn.entregar{background:var(--green); color:white;}
+  .action-btn.entregar:hover{background:#3A6222;}
+  .action-btn.cancelar{background:transparent; color:var(--brick); border-color:var(--brick);}
+  .action-btn.cancelar:hover{background:var(--brick); color:white;}
+  .action-btn.reactivar{background:var(--mustard); color:var(--ink);}
+  .action-btn.reactivar:hover{background:#C08A2E;}
+
+  .empty-state{
+    text-align:center; padding:60px 20px; color:var(--ink-soft);
+    font-style:italic; font-size:15px;
+  }
+
+  @media(max-width:600px){
+    .dashboard{padding:14px;}
+    .header h1{font-size:20px;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .order-info{grid-template-columns:1fr;}
+    .action-btn{min-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <h1>Panel de Karla</h1>
+    <p>Sabor De El Pulgarcito</p>
+    <input type="password" id="password-input" placeholder="Contraseña" autocomplete="current-password">
+    <button onclick="checkPassword()">Entrar</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<div class="dashboard" id="dashboard">
+  <div class="header">
+    <h1>Pedidos</h1>
+    <div class="actions">
+      <button class="refresh-btn" onclick="loadOrders()">🔄 Actualizar</button>
+      <button class="logout-btn" onclick="logout()">Salir</button>
+    </div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="todos" onclick="setFilter('todos')">Todos</button>
+    <button class="filter-btn" data-filter="hoy" onclick="setFilter('hoy')">Hoy</button>
+    <button class="filter-btn" data-filter="semana" onclick="setFilter('semana')">Esta semana</button>
+    <button class="filter-btn" data-filter="pendiente" onclick="setFilter('pendiente')">Pendientes</button>
+    <button class="filter-btn" data-filter="entregado" onclick="setFilter('entregado')">Entregados</button>
+  </div>
+
+  <div class="orders-list" id="orders-list">
+    <p class="empty-state">Cargando pedidos...</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://zohhiijbydibferiazpo.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvaGhpaWpieWRpYmZlcmlhenBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMTM4MjUsImV4cCI6MjEwNTU4OTgyNX0.DIKbYw4nDxp-XawmXoixIuQEWqbUE7o8JqspdWQdB5k';
+
+// Hash SHA-256 de la contraseña
+// Generá el tuyo en: https://emn178.github.io/online-tools/sha256.html
+const ADMIN_PASSWORD_HASH = '8335807684093e0caa564dd444366f24c1ad35d3fa9c82e2a952833695a4a7a6';
+
+let supabaseClient = null;
+let allOrders = [];
+let currentFilter = 'todos';
+
+try {
+  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} catch (e) {
+  console.error('Supabase no se pudo inicializar:', e);
+}
+
+async function sha256(text){
+  const encoder = new TextEncoder();
+  const data = encoder.encode(text);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkPassword(){
+  const input = document.getElementById('password-input');
+  const error = document.getElementById('login-error');
+  const value = input.value.trim();
+  
+  const hash = await sha256(value);
+  
+  if(hash === ADMIN_PASSWORD_HASH){
+    sessionStorage.setItem('adminLogged', 'true');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').classList.add('active');
+    loadOrders();
+  } else {
+    error.textContent = 'Contraseña incorrecta';
+    input.value = '';
+    input.focus();
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem('adminLogged');
+  location.reload();
+}
+
+if(sessionStorage.getItem('adminLogged') === 'true'){
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').classList.add('active');
+  setTimeout(loadOrders, 100);
+}
+
+document.getElementById('password-input').addEventListener('keypress', (e) => {
+  if(e.key === 'Enter') checkPassword();
+});
+
+async function loadOrders(){
+  const list = document.getElementById('orders-list');
+  if(!supabaseClient){
+    list.innerHTML = '<p class="empty-state">Error de conexión con la base de datos.</p>';
+    return;
+  }
+  
+  list.innerHTML = '<p class="empty-state">Cargando pedidos...</p>';
+  
+  const { data, error } = await supabaseClient
+    .from('pedidos')
+    .select('*')
+    .order('created_at', { ascending: false });
+  
+  if(error){
+    console.error(error);
+    list.innerHTML = '<p class="empty-state">Error cargando pedidos. Revisá la consola.</p>';
+    return;
+  }
+  
+  allOrders = data || [];
+  renderStats();
+  renderOrders();
+}
+
+function renderStats(){
+  const hoy = new Date().toDateString();
+  const pedidosHoy = allOrders.filter(o => new Date(o.created_at).toDateString() === hoy && o.estado !== 'cancelado');
+  const totalHoy = pedidosHoy.reduce((s, o) => s + parseFloat(o.total || 0), 0);
+  const pendientes = allOrders.filter(o => o.estado === 'pendiente').length;
+  const totalGeneral = allOrders.filter(o => o.estado === 'entregado').reduce((s, o) => s + parseFloat(o.total || 0), 0);
+  
+  document.getElementById('stats').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Pedidos hoy</div><div class="stat-value">${pedidosHoy.length}</div></div>
+    <div class="stat-card"><div class="stat-label">Ventas hoy</div><div class="stat-value">$${totalHoy.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Pendientes</div><div class="stat-value">${pendientes}</div></div>
+    <div class="stat-card"><div class="stat-label">Total entregado</div><div class="stat-value">$${totalGeneral.toFixed(2)}</div></div>
+  `;
+}
+
+function setFilter(filter){
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+  renderOrders();
+}
+
+function getFilteredOrders(){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const inicioSemana = new Date(hoy); inicioSemana.setDate(hoy.getDate() - 7);
+  
+  return allOrders.filter(o => {
+    const fecha = new Date(o.created_at);
+    if(currentFilter === 'hoy') return fecha >= hoy;
+    if(currentFilter === 'semana') return fecha >= inicioSemana;
+    if(currentFilter === 'pendiente') return o.estado === 'pendiente';
+    if(currentFilter === 'entregado') return o.estado === 'entregado';
+    return true;
+  });
+}
+
+function renderOrders(){
+  const list = document.getElementById('orders-list');
+  const orders = getFilteredOrders();
+  
+  if(orders.length === 0){
+    list.innerHTML = '<p class="empty-state">No hay pedidos para mostrar.</p>';
+    return;
+  }
+  
+  list.innerHTML = orders.map(o => {
+    const fecha = new Date(o.created_at);
+    const fechaStr = fecha.toLocaleDateString('es-ES', { day:'numeric', month:'short', year:'numeric' });
+    const horaStr = fecha.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
+    
+    const items = Array.isArray(o.items) ? o.items : [];
+    const itemsHtml = items.map(it => `
+      <div class="item">
+        <span class="item-name">${it.name} ${it.qty > 1 ? 'x' + it.qty : ''}</span>
+        <span>$${(it.price * it.qty).toFixed(2)}</span>
+      </div>
+    `).join('');
+    
+    const estadoClass = 'state-' + (o.estado || 'pendiente');
+    
+    return `
+      <div class="order-card ${o.estado}">
+        <div class="order-header">
+          <div>
+            <div class="order-name">${o.nombre || 'Sin nombre'}</div>
+            <div class="order-date">${fechaStr} · ${horaStr}</div>
+          </div>
+          <span class="order-state ${estadoClass}">${o.estado || 'pendiente'}</span>
+        </div>
+        
+        <div class="order-info">
+          <div><div class="label">Teléfono</div><div class="value">${o.telefono || '-'}</div></div>
+          <div><div class="label">Entrega</div><div class="value">${o.entrega || '-'}</div></div>
+        </div>
+        
+        ${o.notas ? `<div class="order-notes">📝 ${o.notas}</div>` : ''}
+        
+        <div class="order-items">${itemsHtml}</div>
+        
+        <div class="order-total">
+          <span>Total</span>
+          <span class="total-amount">$${parseFloat(o.total || 0).toFixed(2)}</span>
+        </div>
+        
+        <div class="order-actions" style="margin-top:14px;">
+          <button class="action-btn whatsapp" onclick="contactWhatsApp('${o.telefono}','${(o.nombre||'').replace(/'/g,"\\'")}')">💬 WhatsApp</button>
+          ${o.estado === 'pendiente' ? `
+            <button class="action-btn entregar" onclick="updateOrderState('${o.id}','entregado')">✓ Marcar entregado</button>
+            <button class="action-btn cancelar" onclick="updateOrderState('${o.id}','cancelado')">✗ Cancelar</button>
+          ` : ''}
+          ${o.estado === 'cancelado' ? `
+            <button class="action-btn reactivar" onclick="updateOrderState('${o.id}','pendiente')">↺ Reactivar</button>
+          ` : ''}
+          ${o.estado === 'entregado' ? `
+            <button class="action-btn cancelar" onclick="updateOrderState('${o.id}','pendiente')">↺ Volver a pendiente</button>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function updateOrderState(id, newState){
+  if(!supabaseClient) return;
+  const { error } = await supabaseClient
+    .from('pedidos')
+    .update({ estado: newState })
+    .eq('id', id);
+  
+  if(error){
+    console.error(error);
+    alert('Error actualizando el pedido');
+    return;
+  }
+  
+  const order = allOrders.find(o => String(o.id) === String(id));
+  if(order) order.estado = newState;
+  renderStats();
+  renderOrders();
+}
+
+function contactWhatsApp(phone, name){
+  const cleanPhone = (phone || '').replace(/[^\d]/g, '');
+  const fullPhone = cleanPhone.startsWith('1') ? cleanPhone : '1' + cleanPhone;
+  const msg = encodeURIComponent(`Hola ${name}, te escribo de Sabor De El Pulgarcito 🫓`);
+  window.open(`https://wa.me/${fullPhone}?text=${msg}`, '_blank');
+}
+</script>
+</body>
+</html>
