@@ -1474,7 +1474,7 @@ function renderCheckout(){
   `;
 }
 
-function enviarPedido(){
+async function enviarPedido(){
   const btn = document.getElementById('send-btn');
   const name = customerData.name.trim();
   const phone = customerData.phone.trim();
@@ -1494,8 +1494,49 @@ function enviarPedido(){
   const waMsg = encodeURIComponent(
     `${t('wa.greeting')}\n\n${resumen}\n\n${t('cart.subtotal')}: ${money(subtotal)}\n${t('cart.shipping')}: ${deliveryOpt.cost > 0 ? money(deliveryOpt.cost) : t('cart.free')}\n${t('cart.tip')}: ${money(tipAmount)}\n${t('cart.total')}: ${money(total)}\n\n${t('wa.client')}: ${name}\n${t('wa.phone')}: ${phone}\n${t('wa.delivery')}: ${deliveryLabel(deliveryOpt)}\n${t('wa.notes')}: ${notes || t('wa.none')}\n${t('wa.forDay')}: ${diaLabel}\n\n${t('wa.coord')}`
   );
+
+  // ============================================================
+  // GUARDAR PEDIDO EN SUPABASE
+  // ============================================================
+  try {
+    if (supabaseClient) {
+      const groupedItems = Object.values(grouped).map(it => ({
+        name: it.name,
+        type: it.type,
+        qty: it.qty,
+        price: it.price
+      }));
+
+      const { error } = await supabaseClient.from('pedidos').insert([{
+        nombre: name,
+        telefono: phone,
+        notas: notes || '',
+        entrega: deliveryLabel(deliveryOpt),
+        items: groupedItems,
+        subtotal: subtotal,
+        envio: deliveryOpt.cost,
+        propina: tipAmount,
+        total: total,
+        estado: 'pendiente'
+      }]);
+
+      if (error) {
+        console.warn('Error guardando pedido en Supabase:', error);
+      } else {
+        console.log('✅ Pedido guardado en Supabase');
+      }
+    } else {
+      console.warn('Supabase no está inicializado');
+    }
+  } catch (err) {
+    console.warn('Excepción guardando pedido:', err);
+  }
+
+  // Abrir WhatsApp
   window.open(`https://wa.me/18186443826?text=${waMsg}`, '_blank');
   showToast(t('toast.sent'));
+
+  // Limpiar carrito
   cart = []; customerData.name = ''; customerData.phone = ''; customerData.notes = '';
   updateCartUI();
   setTimeout(() => toggleCart(false), 2500);
