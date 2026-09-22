@@ -85,7 +85,13 @@
     position:relative;
     overflow-x:hidden;
     max-width: 100%;
-  }
+  }   
+  body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
   h1,h2,h3,.display{
     font-family:'Fraunces', serif;
     font-weight:600;
@@ -518,105 +524,112 @@
     .cart-btn svg{width:14px; height:14px;}
     .cart-badge{font-size:10.5px; min-width:17px; height:17px;}
   }
-  @media(max-width:700px){
-    .hero-approved-wrap{ padding:3px 5px; gap:3px; }
-    .hero-approved-wrap .stamp{ font-size:9px; width:54px; height:54px; padding:5px 2px; }
-    .hero-approved-photos img{ width:54px !important; height:54px !important; max-width:54px; max-height:54px; }
-    .hero-approved-photos img:last-child{ margin-left:-15px; }
-    .hero-copy h1{font-size:30px;}
-    .hero-copy .lede{font-size:16px;}
-    .hero{padding:44px 0 36px;}
-    .section{padding:48px 0;}
-    .section-head{margin-bottom:28px;}
-    .section-head h2{font-size:24px;}
-    .section-head p{font-size:15px;}
-    .section-label{font-size:12px;}
-    .day-selector{padding:4px; gap:5px; margin-bottom:14px; border-radius:10px;}
-    .day-chip{font-size:11px; padding:6px 10px; border-radius:16px;}
-    .day-chip.today::after{font-size:7px; padding:1px 4px; top:-6px; right:-3px;}
-    .menu-filters{gap:6px; margin-bottom:20px;}
-    .filter-chip{font-size:12px; padding:6px 12px;}
-    .menu-grid{grid-template-columns:repeat(2,1fr); gap:12px;}
-    .dish-card, .dish-card.featured-lg, .dish-card.featured-tall{grid-column:span 1; grid-row:auto;}
-    .dish-img, .dish-card.featured-lg .dish-img, .dish-card.featured-tall .dish-img{height:120px;}
-    .dish-body{padding:12px 12px 14px; gap:8px;}
-    .dish-card h3, .dish-card.featured-lg h3, .dish-card.featured-tall h3{font-size:15px; line-height:1.2;}
-    .dish-teaser{font-size:12px; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
-    .cat-badge{font-size:10px; gap:4px;}
-    .cat-badge svg{width:12px; height:12px;}
-    .price-tag, .dish-card.featured-lg .price-tag{font-size:14px;}
-    .see-more{font-size:11px;}
-    .dish-bottom{padding-top:4px;}
-    .dish-card .highlight-badge{font-size:9px; padding:3px 8px; top:8px; left:8px;}
-    .cart-drawer{width:100%;}
-    .option-toggle{flex-direction:column;}
-    .modal-body{padding:22px 22px 0;}
-    .modal h3{font-size:22px;}
-    .modal-img{height:180px;}
-    .pupusa-selector{grid-template-columns:1fr;}
-    .value-item h3{font-size:16px;}
-    .value-item p{font-size:13.5px;}
-    .testi-quote{font-size:15px;}
-    .foot-grid{grid-template-columns:1fr; gap:24px;}
-    .final-cta h2{font-size:26px;}
-    .final-cta p{font-size:15px;}
-    .bubble-zone{height:100px; margin-top:-8px;}
-    .share-btn{width:28px; height:28px; top:6px; right:6px;}
-    .share-btn svg{width:13px; height:13px;}
-    .back-to-top{bottom:80px; right:18px; width:42px; height:42px;}
-    .back-to-top svg{width:18px; height:18px;}
-    .whatsapp-float{bottom:18px; right:18px; width:50px; height:50px;}
-    .lang-switch{padding:5px 8px; font-size:11.5px;}
-    .lang-btn{font-size:11.5px;}
-    .nav{padding:10px 14px; gap:8px;}
-    .logo{font-size:16px; max-width:120px;}
-    .logo span{font-size:9.5px;}
-    .nav-right{gap:6px;}
-    .cart-btn{padding:6px 9px; font-size:11.5px; gap:4px;}
-    .cart-btn svg{width:13px; height:13px;}
-    .cart-badge{font-size:10px; min-width:16px; height:16px;}
-    .trust-row{gap:6px; margin-top:24px;}
-    .pill{font-size:11px; padding:5px 10px;}
-    .pill svg{width:11px; height:11px;}
-    .modal{max-width:100%; max-height:92vh; border-radius:6px 24px 6px 24px; padding:0 0 20px;}
-    .modal-img{height:140px;}
-    .modal-body{padding:18px 20px 0;}
-    .modal h3{font-size:20px; margin-bottom:6px;}
-    .modal .dish-desc{font-size:13.5px; margin-bottom:14px; line-height:1.4;}
-    .modal .cat-badge{font-size:10.5px; margin-bottom:8px;}
-    .option-toggle{flex-direction:row; gap:8px; margin-bottom:14px;}
-    .option-card{padding:10px 12px; border-radius:4px 12px 4px 12px;}
-    .option-card .opt-title{font-size:12.5px;}
-    .option-card .opt-price{font-size:15px; margin-top:2px;}
-    .option-card .opt-desc{font-size:11px; margin-top:2px; line-height:1.25;}
-    .modal-meta{gap:14px; margin-bottom:14px; font-size:12px;}
-    .modal-meta strong{font-size:14px;}
-    .includes-title{font-size:11.5px; margin-bottom:6px;}
-    .includes-list{gap:5px; margin-bottom:14px;}
-    .includes-list li{font-size:13px; gap:7px;}
-    .includes-list svg{width:12px; height:12px; margin-top:2px;}
-    .pupusa-selector{gap:6px; margin-bottom:12px;}
-    .pupusa-option{padding:8px 10px;}
-    .pupusa-opt-name{font-size:12.5px;}
-    .pupusa-opt-desc{font-size:11px; margin-top:2px;}
-    .pupusa-opt-price{font-size:13.5px; margin-top:3px;}
-    .modal .btn-ghost.btn-small{padding:6px 12px !important; font-size:13px;}
-    #modal-qty{font-size:18px !important; min-width:32px !important;}
-    .modal-actions{gap:8px; flex-direction:row;}
-    .modal-actions .btn{padding:11px 14px; font-size:13.5px; flex:1; justify-content:center;}
-    .modal-actions .btn-ghost{flex:0.7;}
-    .modal-close{width:30px; height:30px; font-size:17px; top:10px; right:10px;}
-    .review-modal{padding:24px 20px 20px;}
-    .review-modal h3{font-size:20px;}
-    .review-actions{flex-direction:column;}
-    .star-btn svg{width:28px; height:28px;}
-    .reviews-toolbar{gap:6px;}
-    .review-filter-btn{font-size:12px; padding:6px 12px;}
-    .reviews-stats{margin-left:0; width:100%; font-size:12px;}
-    .testi-card{padding:18px;}
-    .testi-photo, .testi-initial{width:44px; height:44px; font-size:18px;}
-    .testi-name{font-size:18px;}
+@media(max-width:700px){
+  .hero-approved-wrap{ padding:3px 5px; gap:3px; }
+  .hero-approved-wrap .stamp{ font-size:9px; width:54px; height:54px; padding:5px 2px; }
+  .hero-approved-photos img{ width:54px !important; height:54px !important; max-width:54px; max-height:54px; }
+  .hero-approved-photos img:last-child{ margin-left:-15px; }
+  .hero-copy h1{font-size:30px;}
+  .hero-copy .lede{font-size:16px;}
+  .hero{padding:44px 0 36px;}
+  .section{padding:48px 0;}
+  .section-head{margin-bottom:28px;}
+  .section-head h2{font-size:24px;}
+  .section-head p{font-size:15px;}
+  .section-label{font-size:12px;}
+  .day-selector{padding:4px; gap:5px; margin-bottom:14px; border-radius:10px;}
+  .day-chip{font-size:11px; padding:6px 10px; border-radius:16px;}
+  .day-chip.today::after{font-size:7px; padding:1px 4px; top:-6px; right:-3px;}
+  .menu-filters{gap:6px; margin-bottom:20px;}
+  .filter-chip{font-size:12px; padding:6px 12px;}
+  .menu-grid{grid-template-columns:repeat(2,1fr); gap:12px;}
+  .dish-card, .dish-card.featured-lg, .dish-card.featured-tall{grid-column:span 1; grid-row:auto;}
+  .dish-img, .dish-card.featured-lg .dish-img, .dish-card.featured-tall .dish-img{height:120px;}
+  .dish-body{padding:12px 12px 14px; gap:8px;}
+  .dish-card h3, .dish-card.featured-lg h3, .dish-card.featured-tall h3{font-size:15px; line-height:1.2;}
+  .dish-teaser{font-size:12px; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
+  .cat-badge{font-size:10px; gap:4px;}
+  .cat-badge svg{width:12px; height:12px;}
+  .price-tag, .dish-card.featured-lg .price-tag{font-size:14px;}
+  .see-more{font-size:11px;}
+  .dish-bottom{padding-top:4px;}
+  .dish-card .highlight-badge{font-size:9px; padding:3px 8px; top:8px; left:8px;}
+  .cart-drawer{width:100%;}
+  .value-item h3{font-size:16px;}
+  .value-item p{font-size:13.5px;}
+  .testi-quote{font-size:15px;}
+  .foot-grid{grid-template-columns:1fr; gap:24px;}
+  .final-cta h2{font-size:26px;}
+  .final-cta p{font-size:15px;}
+  .bubble-zone{height:100px; margin-top:-8px;}
+  .share-btn{width:28px; height:28px; top:6px; right:6px;}
+  .share-btn svg{width:13px; height:13px;}
+  .back-to-top{bottom:80px; right:18px; width:42px; height:42px;}
+  .back-to-top svg{width:18px; height:18px;}
+  .whatsapp-float{bottom:18px; right:18px; width:50px; height:50px;}
+  .lang-switch{padding:5px 8px; font-size:11.5px;}
+  .lang-btn{font-size:11.5px;}
+  .nav{padding:10px 14px; gap:8px;}
+  .logo{font-size:16px; max-width:120px;}
+  .logo span{font-size:9.5px;}
+  .nav-right{gap:6px;}
+  .cart-btn{padding:6px 9px; font-size:11.5px; gap:4px;}
+  .cart-btn svg{width:13px; height:13px;}
+  .cart-badge{font-size:10px; min-width:16px; height:16px;}
+  .trust-row{gap:6px; margin-top:24px;}
+  .pill{font-size:11px; padding:5px 10px;}
+  .pill svg{width:11px; height:11px;}
+  
+  /* ===== MODAL - una sola vez cada selector ===== */
+  .modal{
+    max-width:100%;
+    max-height:85vh;
+    width: calc(100% - 24px);
+    border-radius:6px 24px 6px 24px;
+    padding:0 0 20px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
+  .modal-img{height:150px;}
+  .modal-body{padding:18px 20px 0;}
+  .modal h3{font-size:20px; margin-bottom:6px;}
+  .modal .dish-desc{font-size:13.5px; margin-bottom:14px; line-height:1.4;}
+  .modal .cat-badge{font-size:10.5px; margin-bottom:8px;}
+  .option-toggle{flex-direction:row; gap:8px; margin-bottom:14px;}
+  .option-card{padding:10px 12px; border-radius:4px 12px 4px 12px;}
+  .option-card .opt-title{font-size:12.5px;}
+  .option-card .opt-price{font-size:15px; margin-top:2px;}
+  .option-card .opt-desc{font-size:11px; margin-top:2px; line-height:1.25;}
+  .modal-meta{gap:14px; margin-bottom:14px; font-size:12px;}
+  .modal-meta strong{font-size:14px;}
+  .includes-title{font-size:11.5px; margin-bottom:6px;}
+  .includes-list{gap:5px; margin-bottom:14px;}
+  .includes-list li{font-size:13px; gap:7px;}
+  .includes-list svg{width:12px; height:12px; margin-top:2px;}
+  .pupusa-selector{grid-template-columns:1fr; gap:6px; margin-bottom:12px;}
+  .pupusa-option{padding:8px 10px;}
+  .pupusa-opt-name{font-size:12.5px;}
+  .pupusa-opt-desc{font-size:11px; margin-top:2px;}
+  .pupusa-opt-price{font-size:13.5px; margin-top:3px;}
+  .modal .btn-ghost.btn-small{padding:6px 12px !important; font-size:13px;}
+  #modal-qty{font-size:18px !important; min-width:32px !important;}
+  .modal-actions{gap:8px; flex-direction:row;}
+  .modal-actions .btn{padding:11px 14px; font-size:13.5px; flex:1; justify-content:center;}
+  .modal-actions .btn-ghost{flex:0.7;}
+  .modal-close{width:30px; height:30px; font-size:17px; top:10px; right:10px;}
+  
+  /* ===== RESEÑAS ===== */
+  .review-modal{padding:24px 20px 20px;}
+  .review-modal h3{font-size:20px;}
+  .review-actions{flex-direction:column;}
+  .star-btn svg{width:28px; height:28px;}
+  .reviews-toolbar{gap:6px;}
+  .review-filter-btn{font-size:12px; padding:6px 12px;}
+  .reviews-stats{margin-left:0; width:100%; font-size:12px;}
+  .testi-card{padding:18px;}
+  .testi-photo, .testi-initial{width:44px; height:44px; font-size:18px;}
+  .testi-name{font-size:18px;}
+}
   @media(max-width:420px){
     .dish-img, .dish-card.featured-lg .dish-img, .dish-card.featured-tall .dish-img{height:100px;}
     .dish-card h3, .dish-card.featured-lg h3, .dish-card.featured-tall h3{font-size:13.5px;}
@@ -1264,6 +1277,7 @@ function openModal(id){
   if (d && d.isPupusas) selectedPupusa = d.pupusaOptions[0];
   renderModal(id);
   document.getElementById('overlay').classList.add('active');
+  document.body.classList.add('modal-open');
 }
 
 function renderModal(id){
@@ -1371,7 +1385,10 @@ function renderModal(id){
 
 function setModalOption(id, opt){ modalOption = opt; renderModal(id); }
 function selectPupusa(pupusaId, dishId){ const d = dishes.find(x => x.id === dishId); selectedPupusa = d.pupusaOptions.find(p => p.id === pupusaId); renderModal(dishId); }
-function closeModal(){ document.getElementById('overlay').classList.remove('active'); }
+function closeModal(){ 
+  document.getElementById('overlay').classList.remove('active'); 
+  document.body.classList.remove('modal-open');
+}
 function changeQty(delta){ modalQty = Math.max(1, modalQty + delta); const el = document.getElementById('modal-qty'); if(el) el.textContent = modalQty; }
 
 /* ============================================================
@@ -1562,7 +1579,10 @@ async function enviarPedido(){
   setTimeout(() => toggleCart(false), 2500);
 }
 
-function toggleCart(open){ document.getElementById('cart-drawer').classList.toggle('active', open); }
+function toggleCart(open){ 
+  document.getElementById('cart-drawer').classList.toggle('active', open); 
+  document.body.classList.toggle('modal-open', open);
+}
 function showToast(text){ const el = document.getElementById('toast'); el.textContent = text; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2200); }
 
 /* ============================================================
@@ -1581,9 +1601,13 @@ function openReviewModal(){
   document.getElementById('review-photo-preview').innerHTML = '';
   document.getElementById('review-form').reset();
   setRating(5);
+  document.body.classList.add('modal-open');
 }
 
-function closeReviewModal(){ document.getElementById('review-overlay').classList.remove('active'); }
+function closeReviewModal(){ 
+  document.getElementById('review-overlay').classList.remove('active');
+  document.body.classList.remove('modal-open');
+}
 
 function setRating(value){
   currentRating = value;
@@ -1711,21 +1735,8 @@ async function deleteReview(id){
 }
 
 function getDefaultReviewsHtml(){
-  const defaults = [
-    { name: 'Martha Asc.', text: currentLang === 'en' ? 'The pupusas arrived hot and the curtido was fresh.' : 'Las pupusas llegaron calientitas y con el curtido bien fresco.', meta: t('testi.meta1'), rating: 5 },
-    { name: 'Eduardo Asc.', text: currentLang === 'en' ? 'I ordered the ribs combo and nothing was left.' : 'Pedí el combo de costillas para toda la familia y no sobró nada.', meta: t('testi.meta2'), rating: 5 },
-    { name: 'Maria Jose', text: currentLang === 'en' ? 'The chicken tamales are just like my mom used to make.' : 'Los tamales de pollo son iguales a los que hacía mi mamá.', meta: t('testi.meta3'), rating: 5 }
-  ];
-  return defaults.map(d => `
-    <div class="testi-card">
-      <div class="testi-header"><div class="testi-initial">${d.name.charAt(0)}</div><div class="testi-info"><div class="testi-name">${d.name}</div></div></div>
-      <div class="testi-stars">${Array.from({length:5}, () => STAR_FILLED).join('')}</div>
-      <p class="testi-quote">"${d.text}"</p>
-      <div class="testi-meta"><span>${d.meta}</span></div>
-    </div>
-  `).join('');
+  return '<p class="testi-empty">' + (currentLang === 'en' ? 'Be the first to leave a review!' : '¡Sé el primero en dejar una reseña!') + '</p>';
 }
-
 /* ============================================================
    INIT
    ============================================================ */
